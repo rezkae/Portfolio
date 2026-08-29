@@ -17,7 +17,7 @@ export default function ProjectList() {
           <motion.article
             key={project.id}
             id={project.id}
-            className="grid scroll-mt-24 grid-cols-1 border-b border-line py-12 last:border-b-0 sm:py-16 md:grid-cols-12 lg:grid-cols-12"
+            className="clickable-ring grid scroll-mt-24 grid-cols-1 border-b border-line py-12 last:border-b-0 sm:py-16 md:grid-cols-12 lg:grid-cols-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={defaultViewport}

@@ -95,7 +95,7 @@ export default function Hero() {
               {/* OPEN-TO-WORK CALLOUT */}
               <Link
                 href="/contact"
-                className="clickable-ring group glass flex aspect-square h-32 flex-col items-center justify-center gap-1.5 overflow-hidden p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
+                className="clickable-ring group glass flex aspect-square h-32 flex-col items-center justify-center gap-1.5 p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
               >
                 <DecodeText
                   text="Open to Work"
