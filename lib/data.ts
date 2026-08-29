@@ -166,26 +166,6 @@ export const journey = [
   },
 ];
 
-// Expertise — categorized skill areas
-export const expertise = [
-  {
-    category: "Frontend",
-    skills: ["TypeScript", "JavaScript", "React", "HTML", "CSS", "Tailwind CSS", "Figma"],
-  },
-  {
-    category: "Backend",
-    skills: ["Node.js", "Python", "FastAPI", "Java", "PHP", "Express.js"],
-  },
-  {
-    category: "AI/ML",
-    skills: ["Python", "YOLOv11", "EfficientNet-B4", "Model Evaluation"],
-  },
-  {
-    category: "Databases",
-    skills: ["PostgreSQL", "SQL", "MySQL"],
-  },
-];
-
 export const techStack = [
   "TypeScript",
   "JavaScript",
@@ -198,6 +178,14 @@ export const techStack = [
   "Java",
   "Visual Basic",
   "Figma",
+];
+
+// Things I'm actively exploring right now (dashed pills on the About page)
+export const currentlyExploring = [
+  "AI/ML",
+  "Cloud Architecture",
+  "CI/CD",
+  "Data Science",
 ];
 
 export const services = [

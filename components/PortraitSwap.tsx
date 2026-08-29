@@ -1,16 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const IMAGES = ["/1AboutMePortrait.jpg", "/2AboutMePortrait.jpg"];
-const SWIPE_THRESHOLD = 40; // px of horizontal travel to count as a swipe
+const SWIPE_THRESHOLD = 40; // px of horizontal travel to count as a swipe/drag
 
 /**
- * About-page portrait that loops between two photos:
- * - Desktop: toggles on hover.
- * - Touch: toggles on a horizontal swipe gesture (no tap required).
- * Toggling is a crossfade so the switch reads as a fluid loop.
+ * About-page portrait that loops between two photos. The swap only fires on
+ * an actual swipe/drag gesture: touch swipe or mouse-drag (never hover,
+ * never a plain click).
  */
 export default function PortraitSwap({
   alt,
@@ -20,21 +19,45 @@ export default function PortraitSwap({
   sizes?: string;
 }) {
   const [index, setIndex] = useState(0);
-  const touchStartX = useRef<number | null>(null);
+  const dragStartX = useRef<number | null>(null);
+  const dragCurrentX = useRef(0);
 
   const toggle = () => setIndex((i) => (i + 1) % IMAGES.length);
 
+  // Track the drag on window so releasing outside the photo still counts.
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      if (dragStartX.current !== null) dragCurrentX.current = e.clientX;
+    };
+    const handleUp = () => {
+      if (dragStartX.current === null) return;
+      const dx = dragCurrentX.current - dragStartX.current;
+      dragStartX.current = null;
+      if (Math.abs(dx) >= SWIPE_THRESHOLD) toggle();
+    };
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("mouseup", handleUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("mouseup", handleUp);
+    };
+  }, []);
+
   return (
     <div
-      className="group relative aspect-[4/5] w-full overflow-hidden border border-line bg-surface"
-      onMouseEnter={toggle}
+      className="group relative aspect-[4/5] w-full cursor-grab select-none overflow-hidden border border-line bg-surface active:cursor-grabbing"
+      onMouseDown={(e) => {
+        dragStartX.current = e.clientX;
+        dragCurrentX.current = e.clientX;
+      }}
       onTouchStart={(e) => {
-        touchStartX.current = e.touches[0].clientX;
+        dragStartX.current = e.touches[0].clientX;
+        dragCurrentX.current = e.touches[0].clientX;
       }}
       onTouchEnd={(e) => {
-        if (touchStartX.current === null) return;
-        const dx = e.changedTouches[0].clientX - touchStartX.current;
-        touchStartX.current = null;
+        if (dragStartX.current === null) return;
+        const dx = e.changedTouches[0].clientX - dragStartX.current;
+        dragStartX.current = null;
         if (Math.abs(dx) >= SWIPE_THRESHOLD) toggle();
       }}
     >
@@ -46,14 +69,11 @@ export default function PortraitSwap({
           fill
           sizes={sizes ?? "(min-width: 768px) 38vw, 100vw"}
           aria-hidden={i !== index}
-          className={`object-cover object-top grayscale transition-all duration-700 group-hover:grayscale-0 ${
+          className={`pointer-events-none object-cover object-top grayscale transition-all duration-700 group-hover:grayscale-0 ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
         />
       ))}
-      <span className="pointer-events-none absolute bottom-3 right-3 bg-ink/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-paper/80">
-        {index + 1}/{IMAGES.length}
-      </span>
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col bg-ink text-paper`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-          <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col md:px-6 lg:px-8">
+          <div className="mx-auto flex min-h-screen w-full max-w-[1920px] flex-col md:px-6 lg:px-8">
             <Nav />
             <div className="flex-1">{children}</div>
           </div>

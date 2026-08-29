@@ -2,14 +2,17 @@ import Link from "next/link";
 import FactStrip from "@/components/FactStrip";
 import PortraitSwap from "@/components/PortraitSwap";
 import Reveal from "@/components/Reveal";
+import TechIcon from "@/components/TechIcon";
 import {
   certificates,
+  currentlyExploring,
   education,
   experience,
-  expertise,
   journey,
   profile,
   quickStats,
+  services,
+  techStack,
 } from "@/lib/data";
 
 export const metadata = {
@@ -40,13 +43,19 @@ export default function AboutPage() {
         </div>
       </Reveal>
 
-      {/* PORTRAIT */}
+      {/* PORTRAIT + INTRO */}
       <Reveal delay={0.05}>
-        <div className="border-b border-line p-4 sm:p-6 md:p-8 lg:p-16">
-          <div className="max-w-md">
+        <div className="grid grid-cols-1 border-b border-line md:grid-cols-12">
+          <div className="p-4 sm:p-6 md:col-span-5 md:border-r md:p-8 lg:p-12">
             <PortraitSwap alt={`Portrait of ${profile.firstName} ${profile.lastName}`} />
             <p className="eyebrow mt-3 block text-muted">
               Portrait · {profile.location}
+            </p>
+          </div>
+          <div className="flex flex-col justify-center border-t border-line p-4 sm:p-6 md:col-span-7 md:border-t-0 md:p-8 lg:p-12">
+            <p className="max-w-xl font-body text-base leading-relaxed text-muted sm:text-lg">
+              A developer who builds software with purpose, turning ideas
+              into thoughtful digital experiences.
             </p>
           </div>
         </div>
@@ -64,23 +73,40 @@ export default function AboutPage() {
         />
       </Reveal>
 
-      {/* PHILOSOPHY */}
+      {/* PHILOSOPHY + NUMBERS */}
       <Reveal delay={0.15}>
-        <div className="border-t border-line">
-          <div className="border-b border-line p-4 sm:p-6 md:p-8">
-            <span className="eyebrow-accent">Philosophy</span>
-          </div>
-          <div className="p-4 sm:p-6 md:p-8 lg:p-16">
+        <div className="grid grid-cols-1 border-t border-line md:grid-cols-12">
+          <div className="p-4 sm:p-6 md:col-span-7 md:border-r md:p-8 lg:p-16">
+            <span className="eyebrow-accent mb-4 block sm:mb-6">Philosophy</span>
             <div className="max-w-2xl space-y-4 font-body text-base leading-relaxed text-muted sm:text-lg">
               <p>
-                Good software is audited, not assumed. I trace every number
-                back to its source: a model&apos;s accuracy to the test it
-                passed, a feature to the spec that asked for it.
+                Correctness is a habit, not a feature. I trace every number
+                back to its source: a model&apos;s accuracy to the test that
+                produced it, a feature&apos;s behavior to the spec that
+                asked for it.
               </p>
-              <p>
-                I keep layers clean so the next change stays cheap, and I
-                prefer precision over flourish, iteration over heroics.
-              </p>
+              <p>Clean layers keep the next change cheap.</p>
+            </div>
+          </div>
+
+          <div className="border-t border-line p-4 sm:p-6 md:col-span-5 md:border-t-0 md:p-8 lg:p-16">
+            <span className="eyebrow-accent">Numbers</span>
+            <div className="mt-4 flex flex-col sm:mt-6">
+              {quickStats.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={`py-5 sm:py-6 ${
+                    index > 0 ? "border-t border-line" : ""
+                  }`}
+                >
+                  <span className="font-display text-4xl font-bold tracking-tighter text-paper sm:text-5xl md:text-6xl">
+                    {stat.number}
+                  </span>
+                  <p className="eyebrow mt-1 block text-muted sm:mt-2">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -124,40 +150,66 @@ export default function AboutPage() {
         </div>
       </Reveal>
 
-      {/* EXPERTISE */}
+      {/* EXPERTISE + TECH STACK + SERVICES */}
       <Reveal delay={0.25}>
-        <div className="border-t border-line">
-          <div className="flex items-baseline justify-between border-b border-line p-4 sm:p-6 md:p-8">
-            <span className="eyebrow-accent">Expertise</span>
-            <span className="hidden font-mono text-[10px] text-muted/60 md:block">
-              {expertise.length} areas
+        <div className="grid grid-cols-1 border-t border-line md:grid-cols-12">
+          {/* LEFT: SECTION MARKER */}
+          <div className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8">
+            <span className="eyebrow block text-muted">Section</span>
+            <span className="mt-2 block font-display text-5xl font-bold tracking-tighter text-paper sm:text-6xl md:text-7xl">
+              03
             </span>
+            <span className="eyebrow-accent mt-4 block">Expertise</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            {expertise.map((area, index) => (
-              <div
-                key={area.category}
-                className={`border-line p-4 sm:p-6 md:p-8 ${
-                  index % 2 === 0 ? "sm:border-r" : ""
-                } ${index < expertise.length - 1 ? "border-b" : ""} ${
-                  index >= 2 ? "sm:border-b-0" : ""
-                } lg:border-b-0 ${
-                  index < expertise.length - 1 ? "lg:border-r" : ""
-                }`}
-              >
-                <span className="eyebrow-accent">{area.category}</span>
-                <ul className="mt-4 space-y-2">
-                  {area.skills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="font-body text-sm leading-relaxed text-muted"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+
+          {/* MIDDLE: TECH STACK + CURRENTLY EXPLORING */}
+          <div className="border-b border-line p-4 sm:p-6 md:col-span-5 md:border-b-0 md:border-r md:p-8 lg:p-10">
+            <span className="eyebrow block text-muted">Tech Stack</span>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper"
+                >
+                  <TechIcon name={tech} className="h-3.5 w-3.5 text-muted" />
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <span className="eyebrow mt-8 block text-muted">
+              Currently Exploring
+            </span>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {currentlyExploring.map((topic) => (
+                <span
+                  key={topic}
+                  className="border border-dashed border-line px-2.5 py-1.5 text-xs font-medium text-muted"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT: SERVICES */}
+          <div className="p-4 sm:p-6 md:col-span-5 md:p-8 lg:p-10">
+            <span className="eyebrow block text-muted">Services</span>
+            <ul className="mt-4 flex flex-col">
+              {services.map((service) => (
+                <li
+                  key={service.index}
+                  className="flex items-baseline gap-4 border-b border-line py-3 last:border-b-0"
+                >
+                  <span className="font-mono text-[10px] text-muted/60">
+                    {service.index}
+                  </span>
+                  <span className="font-display text-base font-bold text-paper">
+                    {service.title}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </Reveal>

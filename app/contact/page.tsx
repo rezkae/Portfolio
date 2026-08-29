@@ -151,9 +151,14 @@ export default function ContactPage() {
       <Reveal delay={0.25}>
         <div className="flex flex-col justify-between gap-2 border-t border-line p-4 sm:flex-row sm:items-center sm:p-6 md:p-8">
           <span className="eyebrow block text-muted">Credits</span>
-          <p className="font-body text-sm text-muted">
-            Built with Next.js, TypeScript, Tailwind CSS &amp; Framer Motion
-          </p>
+          <div className="text-right">
+            <p className="font-body text-sm text-paper">
+              Designed &amp; Built by {profile.firstName} {profile.lastName}
+            </p>
+            <p className="mt-0.5 font-body text-sm text-muted">
+              Built with Next.js, TypeScript, Tailwind CSS &amp; Framer Motion
+            </p>
+          </div>
         </div>
       </Reveal>
     </main>
