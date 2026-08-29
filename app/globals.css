@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens — light values by default, dark values under .dark.
+   RGB triplets so Tailwind can apply opacity modifiers via
+   rgb(var(--token) / <alpha-value>). */
+:root {
+  --ink: 247 247 248;
+  --paper: 16 17 20;
+  --surface: 255 255 255;
+  --surface-2: 235 235 238;
+  --line: 214 216 223;
+  --muted: 92 94 102;
+  --violet: 124 92 252;
+  --violet-glow: 91 65 196;
+  --scan: 42 168 114;
+  --grid-line: rgba(0, 0, 0, 0.045);
+}
+
+.dark {
+  --ink: 10 11 13;
+  --paper: 237 237 239;
+  --surface: 19 20 24;
+  --surface-2: 27 29 34;
+  --line: 38 40 47;
+  --muted: 139 141 150;
+  --violet: 124 92 252;
+  --violet-glow: 167 139 250;
+  --scan: 61 220 151;
+  --grid-line: rgba(255, 255, 255, 0.035);
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  html {
+    scroll-behavior: smooth;
+    /* keep in-page anchor targets clear of the sticky nav */
+    scroll-padding-top: 4.5rem;
+  }
+  body {
+    @apply bg-ink text-paper font-body antialiased;
+  }
+  ::selection {
+    background: #7c5cfc;
+    color: #0a0b0d;
+  }
+  :focus-visible {
+    outline: 2px solid #7c5cfc;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Diagnostic reticle: the recurring signature element, styled after the
+     bounding-box corner brackets drawn by the lesion-detection model. */
+  .reticle {
+    position: relative;
+  }
+  .reticle::before,
+  .reticle::after,
+  .reticle > .rt-tl,
+  .reticle > .rt-br {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgb(var(--scan) / 1);
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .reticle::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    transform: translate(4px, 4px);
+  }
+  .reticle::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: translate(-4px, -4px);
+  }
+  .reticle:hover::before,
+  .reticle:focus-within::before,
+  .reticle:hover::after,
+  .reticle:focus-within::after {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  /* Tiny-caps eyebrow labels — text-[10px] uppercase tracking-[0.2em..0.3em] */
+  .eyebrow {
+    @apply font-mono text-[10px] uppercase tracking-[0.2em] text-muted;
+  }
+
+  .eyebrow-wide {
+    @apply font-mono text-[10px] uppercase tracking-[0.3em] text-muted;
+  }
+
+  .eyebrow-accent {
+    @apply font-mono text-[10px] uppercase tracking-[0.3em] text-scan;
+  }
+
+  .label-tag {
+    @apply font-mono text-[10px] uppercase tracking-[0.2em] text-muted;
+  }
+
+  .section-eyebrow {
+    @apply font-mono text-[10px] uppercase tracking-[0.3em] text-scan;
+  }
+
+  .card-surface {
+    @apply bg-surface border border-line rounded-md;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+}

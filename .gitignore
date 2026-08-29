@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+.env*.local
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+drei-portfolio
+node_modules/
+.next/
+drei-portfolio/
+.env*
+.DS_Store
+*.log
+EOF
