@@ -1,6 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import { profile, quickStats, services } from "@/lib/data";
+import {
+  fadeInUp,
+  fadeInLeft,
+  staggerContainer,
+  defaultViewport,
+} from "@/components/motion";
 
 function ArrowUpRight() {
   return (
@@ -11,13 +20,50 @@ function ArrowUpRight() {
 }
 
 /**
- * Homepage "about summary": a compact two-row editorial block between the
- * Hero and WorkSummary. Top row pairs an About intro with the quick stats;
- * bottom row pairs the Services list with a status + Start-a-Project CTA.
+ * Homepage "about summary" (Section 02): a compact two-row editorial block
+ * after WorkSummary. Header follows WorkSummary's "Project Archive" pattern;
+ * the top row pairs an About intro with the quick stats; the bottom row
+ * pairs the Services list with a status + Start-a-Project CTA.
  */
 export default function AboutSummary() {
   return (
     <section className="border-t border-line text-paper">
+      {/* SECTION HEADER */}
+      <motion.div
+        className="border-b border-line"
+        initial="hidden"
+        whileInView="visible"
+        viewport={defaultViewport}
+        variants={staggerContainer}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-12">
+          {/* LEFT: SECTION NUMBER */}
+          <motion.div
+            className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8"
+            variants={fadeInLeft}
+          >
+            <span className="eyebrow block text-muted">Section</span>
+            <span className="mt-2 block font-display text-5xl font-bold tracking-tighter text-paper sm:text-6xl md:text-7xl">
+              02
+            </span>
+          </motion.div>
+
+          {/* RIGHT: HEADLINE */}
+          <motion.div
+            className="flex flex-col justify-center p-4 sm:p-6 md:col-span-10 md:p-8 lg:p-16"
+            variants={fadeInUp}
+          >
+            <span className="eyebrow-accent mb-2 block sm:mb-4">
+              More Than Just Code
+            </span>
+            <h2 className="font-display text-3xl font-bold uppercase leading-[0.9] tracking-tighter text-paper sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+              Beyond
+              <span className="ml-2 text-muted/40 sm:ml-4">Code</span>
+            </h2>
+          </motion.div>
+        </div>
+      </motion.div>
+
       {/* TOP ROW: ABOUT + QUICK STATS */}
       <Reveal>
         <div className="grid grid-cols-1 md:grid-cols-12">

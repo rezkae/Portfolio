@@ -2,14 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import {
-  animate,
-  motion,
-  useInView,
-  useMotionValue,
-} from "framer-motion";
-import { profile, stats, quickStats, techStack } from "@/lib/data";
+import { motion } from "framer-motion";
+import { profile, stats, techStack } from "@/lib/data";
 import TechIcon from "@/components/TechIcon";
 import {
   fadeInUp,
@@ -18,50 +12,6 @@ import {
   scaleIn,
   staggerContainer,
 } from "@/components/motion";
-
-/** Counts from 0 to `target` when scrolled into view, e.g. "2" -> "2+". */
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
-  const count = useMotionValue(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(count, target, {
-      duration: 1.2,
-      ease: "easeOut",
-      onUpdate: (latest) => {
-        if (ref.current) {
-          ref.current.textContent = `${Math.round(latest)}${suffix}`;
-        }
-      },
-    });
-    return () => controls.stop();
-  }, [inView, target, suffix, count]);
-
-  return (
-    <span ref={ref} className="tabular-nums">
-      0{suffix}
-    </span>
-  );
-}
-
-/** Renders a quick-stat number: count-up for numeric values, pulse for symbols. */
-function StatNumber({ value }: { value: string }) {
-  const match = value.match(/^(\d+)(.*)$/);
-  if (!match) {
-    return (
-      <motion.span
-        className="inline-block"
-        animate={{ scale: [1, 1.12, 1], opacity: [1, 0.55, 1] }}
-        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        {value}
-      </motion.span>
-    );
-  }
-  return <CountUp target={parseInt(match[1], 10)} suffix={match[2]} />;
-}
 
 export default function Hero() {
   return (
@@ -218,27 +168,6 @@ export default function Hero() {
                   {stat.value}
                 </p>
               </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* QUICK STATS */}
-      <motion.div className="border-t border-line" variants={fadeInUp}>
-        <div className="grid grid-cols-1 sm:grid-cols-2">
-          {quickStats.map((stat, index) => (
-            <div
-              key={stat.label}
-              className={`border-line p-4 sm:p-6 md:p-8 ${
-                index === 0 ? "border-b border-r sm:border-b-0" : ""
-              }`}
-            >
-              <span className="font-display text-4xl font-bold tracking-tighter text-paper sm:text-5xl md:text-6xl">
-                <StatNumber value={stat.number} />
-              </span>
-              <p className="eyebrow mt-1 block text-muted sm:mt-2">
-                {stat.label}
-              </p>
             </div>
           ))}
         </div>

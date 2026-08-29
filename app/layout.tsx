@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Nav from "@/components/Nav";
+import CursorOrb from "@/components/CursorOrb";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -55,8 +56,9 @@ export default function RootLayout({
             <div className="absolute -left-40 -top-40 h-[36rem] w-[36rem] rounded-full bg-violet/20 blur-[120px]" />
             <div className="absolute -right-40 top-1/3 h-[32rem] w-[32rem] rounded-full bg-scan/15 blur-[120px]" />
             <div className="absolute -bottom-32 left-1/4 h-[30rem] w-[30rem] rounded-full bg-violet-glow/15 blur-[120px]" />
+            <CursorOrb />
           </div>
-          <div className="relative z-10 mx-auto flex min-h-screen w-full flex-col md:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-screen w-full flex-col">
             <Nav />
             <div className="flex-1">{children}</div>
           </div>

@@ -1,14 +1,14 @@
 import Hero from "@/components/Hero";
-import AboutSummary from "@/components/AboutSummary";
 import WorkSummary from "@/components/WorkSummary";
+import AboutSummary from "@/components/AboutSummary";
 import TechStackStrip from "@/components/TechStackStrip";
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <AboutSummary />
       <WorkSummary />
+      <AboutSummary />
       <TechStackStrip />
     </main>
   );
