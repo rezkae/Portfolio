@@ -79,7 +79,7 @@ export default function ContactPage() {
               href={channel.href}
               target={channel.external ? "_blank" : undefined}
               rel={channel.external ? "noopener noreferrer" : undefined}
-              className={`clickable-ring group glass flex h-full min-h-40 flex-col justify-between border-line p-4 transition-colors hover:bg-paper hover:text-ink sm:p-6 md:p-8 lg:min-h-56 lg:p-10 ${
+              className={`group glass flex h-full min-h-40 flex-col justify-between border-line p-4 transition-colors hover:bg-paper hover:text-ink sm:p-6 md:p-8 lg:min-h-56 lg:p-10 ${
                 index < channels.length - 1 ? "border-b" : ""
               } ${index % 2 === 0 ? "sm:border-r" : ""} ${
                 index >= 2 ? "sm:border-b-0" : ""
@@ -145,7 +145,7 @@ export default function ContactPage() {
             href={profile.resumeHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="clickable-ring reticle inline-flex w-fit shrink-0 items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+            className="reticle inline-flex w-fit shrink-0 items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
           >
             Download Resume
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 transition-transform group-hover:translate-y-1">

@@ -199,7 +199,7 @@ export default function AboutPage() {
             <div className="mt-4 flex flex-wrap gap-2">
               {techStack.map((tech) => (
                 <Magnetic key={tech}>
-                  <span className="clickable-ring flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper">
+                  <span className="flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper">
                     <TechIcon name={tech} className="h-3.5 w-3.5 text-muted" />
                     {tech}
                   </span>
@@ -322,7 +322,7 @@ export default function AboutPage() {
               href={profile.resumeHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="clickable-ring reticle mt-6 inline-flex items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+              className="reticle mt-6 inline-flex items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
             >
               Download Resume
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 transition-transform group-hover:translate-y-1">
@@ -338,7 +338,7 @@ export default function AboutPage() {
             </p>
             <Link
               href="/contact"
-              className="clickable-ring reticle mt-6 inline-flex items-center gap-2 bg-paper px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet"
+              className="reticle mt-6 inline-flex items-center gap-2 bg-paper px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet"
             >
               Let&apos;s Connect
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">

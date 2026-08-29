@@ -47,11 +47,10 @@
     background: #7c5cfc;
     color: #0a0b0d;
   }
-  /* Unified focus ring (same violet treatment as .clickable-ring) so every
-     focusable element keeps a visible keyboard indicator. Box-shadow based
-     so it is not clipped by ancestors with overflow-hidden. */
+  /* Simple visible keyboard focus indicator (violet outline). */
   :focus-visible {
-    box-shadow: 0 0 0 3px rgb(var(--violet) / 0.85);
+    outline: 2px solid rgb(var(--violet) / 0.9);
+    outline-offset: 3px;
   }
 }
 
@@ -137,17 +136,5 @@
       linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
       linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
     background-size: 42px 42px;
-  }
-
-  /* Detached hover/focus ring for clickable elements (violet). Box-shadow
-     based so it is never clipped by ancestor overflow-hidden; matches the
-     global :focus-visible treatment. Only sets box-shadow on hover/focus so
-     it does not clobber .glass's depth shadow at rest. */
-  .clickable-ring {
-    transition: box-shadow 0.2s ease;
-  }
-  .clickable-ring:hover,
-  .clickable-ring:focus-visible {
-    box-shadow: 0 0 0 3px rgb(var(--violet) / 0.85);
   }
 }

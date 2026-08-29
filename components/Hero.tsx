@@ -19,7 +19,7 @@ export default function Hero() {
   return (
     <motion.section
       id="hero"
-      className="flex min-h-dvh flex-col bg-ink text-paper"
+      className="flex min-h-dvh flex-col text-paper"
       initial="hidden"
       animate="visible"
       variants={staggerContainer}
@@ -86,7 +86,7 @@ export default function Hero() {
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="clickable-ring group glass flex aspect-square h-32 items-center justify-center transition-colors hover:bg-surface sm:h-auto"
+                className="group glass flex aspect-square h-32 items-center justify-center transition-colors hover:bg-surface sm:h-auto"
               >
                 <span className="px-1 text-center font-display text-lg font-bold uppercase tracking-tighter text-paper transition-colors group-hover:text-violet sm:px-2 sm:text-2xl md:text-3xl lg:text-4xl">
                   {profile.githubHandle}
@@ -95,7 +95,7 @@ export default function Hero() {
               {/* OPEN-TO-WORK CALLOUT */}
               <Link
                 href="/contact"
-                className="clickable-ring group glass flex aspect-square h-32 flex-col items-center justify-center gap-1.5 p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
+                className="group glass flex aspect-square h-32 flex-col items-center justify-center gap-1.5 p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
               >
                 <DecodeText
                   text="Open to Work"
@@ -135,7 +135,7 @@ export default function Hero() {
               {techStack.slice(0, 8).map((tech, index) => (
                 <Magnetic key={tech}>
                   <motion.span
-                    className="clickable-ring flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper"
+                    className="flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.5 + index * 0.05 }}

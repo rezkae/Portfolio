@@ -142,7 +142,7 @@ export default function AboutSummary() {
 
             <Link
               href="/contact"
-              className="clickable-ring group mt-6 flex items-center justify-between whitespace-nowrap bg-paper px-5 py-3.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet sm:mt-8"
+              className="group mt-6 flex items-center justify-between whitespace-nowrap bg-paper px-5 py-3.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet sm:mt-8"
             >
               <span className="mr-6">Start a Project</span>
               <ArrowUpRight />

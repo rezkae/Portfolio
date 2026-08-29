@@ -53,7 +53,7 @@ export default function Nav() {
             <Link
               href="/"
               onClick={() => setIsMenuOpen(false)}
-              className="clickable-ring flex h-full items-center gap-2 border-r border-line px-4 transition-colors hover:bg-surface sm:px-6"
+              className="flex h-full items-center gap-2 border-r border-line px-4 transition-colors hover:bg-surface sm:px-6"
             >
               <span className="font-display text-base font-bold uppercase tracking-tighter text-paper sm:text-lg">
                 {profile.firstName.toUpperCase()}
@@ -69,7 +69,7 @@ export default function Nav() {
                 <Magnetic key={link.href} className="h-14">
                   <Link
                     href={link.href}
-                    className={`clickable-ring flex h-full items-center px-6 border-r border-line text-[10px] uppercase tracking-[0.2em] transition-colors lg:px-8 ${
+                    className={`flex h-full items-center px-6 border-r border-line text-[10px] uppercase tracking-[0.2em] transition-colors lg:px-8 ${
                       active
                         ? "bg-surface text-paper"
                         : "text-muted hover:bg-surface hover:text-paper"
@@ -89,7 +89,7 @@ export default function Nav() {
                 href={profile.resumeHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="clickable-ring hidden h-full items-center border-l border-line px-6 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper lg:flex"
+                className="hidden h-full items-center border-l border-line px-6 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper lg:flex"
               >
                 Resume
               </a>
@@ -109,7 +109,7 @@ export default function Nav() {
             <Magnetic className="h-14">
               <button
                 onClick={() => setTheme(isDark ? "light" : "dark")}
-                className="clickable-ring flex h-full items-center border-l border-line px-4 transition-colors hover:bg-surface sm:px-5"
+                className="flex h-full items-center border-l border-line px-4 transition-colors hover:bg-surface sm:px-5"
                 aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
               >
                 {isDark ? (
@@ -128,7 +128,7 @@ export default function Nav() {
             {/* MOBILE MENU BUTTON */}
             <button
               onClick={() => setIsMenuOpen((open) => !open)}
-              className="clickable-ring flex h-14 items-center border-l border-line px-4 transition-colors hover:bg-surface md:hidden"
+              className="flex h-14 items-center border-l border-line px-4 transition-colors hover:bg-surface md:hidden"
               aria-label="Toggle menu"
               aria-expanded={isMenuOpen}
             >
@@ -157,7 +157,7 @@ export default function Nav() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`clickable-ring border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] transition-colors ${
+                  className={`border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] transition-colors ${
                     active
                       ? "bg-surface text-paper"
                       : "text-muted hover:bg-surface hover:text-paper"
@@ -172,13 +172,13 @@ export default function Nav() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMenuOpen(false)}
-              className="clickable-ring border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper"
+              className="border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper"
             >
               Resume
             </a>
             <button
               onClick={() => setTheme(isDark ? "light" : "dark")}
-              className="clickable-ring flex items-center gap-3 border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper"
+              className="flex items-center gap-3 border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper"
             >
               {isDark ? (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" className="text-paper">

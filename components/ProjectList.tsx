@@ -17,7 +17,7 @@ export default function ProjectList() {
           <motion.article
             key={project.id}
             id={project.id}
-            className="clickable-ring grid scroll-mt-24 grid-cols-1 border-b border-line py-12 last:border-b-0 sm:py-16 md:grid-cols-12 lg:grid-cols-12"
+            className="grid scroll-mt-24 grid-cols-1 border-b border-line py-12 last:border-b-0 sm:py-16 md:grid-cols-12 lg:grid-cols-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={defaultViewport}
@@ -63,7 +63,7 @@ export default function ProjectList() {
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="clickable-ring flex items-center gap-1.5 border border-line bg-surface px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted"
+                    className="flex items-center gap-1.5 border border-line bg-surface px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted"
                   >
                     <TechIcon name={tech} className="h-3 w-3 text-muted" />
                     {tech}

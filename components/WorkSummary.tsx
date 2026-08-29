@@ -64,7 +64,7 @@ export default function WorkSummary() {
             </div>
             <Link
               href="/projects"
-              className="clickable-ring group flex items-center gap-2 whitespace-nowrap border-b border-paper pb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+              className="group flex items-center gap-2 whitespace-nowrap border-b border-paper pb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
             >
               View All
               <ArrowUpRight />
@@ -84,7 +84,7 @@ export default function WorkSummary() {
         >
           <Link
             href={`/projects#${project.id}`}
-            className="clickable-ring group block border-b border-line transition-colors hover:bg-surface/60"
+            className="group block border-b border-line transition-colors hover:bg-surface/60"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12">
               {/* INDEX */}
@@ -173,7 +173,7 @@ export default function WorkSummary() {
           </p>
           <Link
             href="/contact"
-            className="clickable-ring group flex items-center justify-between whitespace-nowrap bg-paper px-4 py-3 text-ink transition-colors hover:bg-violet sm:px-6 sm:py-4"
+            className="group flex items-center justify-between whitespace-nowrap bg-paper px-4 py-3 text-ink transition-colors hover:bg-violet sm:px-6 sm:py-4"
           >
             <span className="mr-3 font-mono text-[10px] font-medium uppercase tracking-[0.2em] sm:mr-6">
               Start a Project
