@@ -31,7 +31,7 @@ export default function PortraitSwap({
 
   return (
     <div
-      className="group relative aspect-[4/5] w-full select-none overflow-hidden border border-line bg-surface"
+      className="relative aspect-[4/5] w-full select-none overflow-hidden border border-line bg-surface"
       onMouseEnter={onMouseEnter}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
@@ -53,7 +53,7 @@ export default function PortraitSwap({
           fill
           sizes={sizes ?? "(min-width: 768px) 38vw, 100vw"}
           aria-hidden={i !== index}
-          className={`pointer-events-none object-cover object-top grayscale transition-all duration-700 group-hover:grayscale-0 ${
+          className={`pointer-events-none object-cover object-top transition-opacity duration-700 ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
         />

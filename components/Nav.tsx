@@ -116,7 +116,7 @@ export default function Nav() {
       {/* MOBILE MENU DROPDOWN */}
       {isMenuOpen && (
         <div className="fixed inset-x-0 top-14 z-40 border-b border-line bg-ink md:hidden">
-          <div className="mx-auto flex w-full max-w-7xl flex-col">
+          <div className="flex w-full flex-col">
             {links.map((link) => {
               const active = pathname === link.href;
               return (

@@ -172,7 +172,7 @@ export default function Hero() {
           </div>
 
           {/* TECH STACK */}
-          <div className="border-b border-line p-4 sm:p-6 md:p-8 lg:p-10">
+          <div className="p-4 sm:p-6 md:p-8 lg:p-10">
             <span className="eyebrow-wide mb-2 block text-muted sm:mb-4">
               Tech Stack
             </span>
@@ -191,24 +191,6 @@ export default function Hero() {
               ))}
             </div>
           </div>
-
-          {/* CTA */}
-          <Link
-            href="/contact"
-            className="group flex items-center justify-between p-4 transition-colors hover:bg-paper hover:text-ink sm:p-6 md:p-8 lg:p-10"
-          >
-            <div>
-              <span className="eyebrow block text-muted group-hover:text-ink/60 sm:mb-2">
-                Get in Touch
-              </span>
-              <span className="font-display text-base font-bold tracking-tight sm:text-lg lg:text-xl">
-                Start a Project
-              </span>
-            </div>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 sm:h-6 sm:w-6">
-              <path d="M7 17L17 7M7 7h10v10" />
-            </svg>
-          </Link>
         </motion.div>
       </div>
 

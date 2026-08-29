@@ -1,0 +1,104 @@
+import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import { profile, quickStats, services } from "@/lib/data";
+
+function ArrowUpRight() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">
+      <path d="M7 17L17 7M7 7h10v10" />
+    </svg>
+  );
+}
+
+/**
+ * Homepage "about summary": a compact two-row editorial block between the
+ * Hero and WorkSummary. Top row pairs an About intro with the quick stats;
+ * bottom row pairs the Services list with a status + Start-a-Project CTA.
+ */
+export default function AboutSummary() {
+  return (
+    <section className="border-t border-line text-paper">
+      {/* TOP ROW: ABOUT + QUICK STATS */}
+      <Reveal>
+        <div className="grid grid-cols-1 md:grid-cols-12">
+          <div className="border-b border-line p-4 sm:p-6 md:col-span-7 md:border-b-0 md:border-r md:p-8 lg:p-16">
+            <span className="eyebrow-accent mb-4 block sm:mb-6">About</span>
+            <p className="max-w-2xl font-body text-base leading-relaxed text-muted sm:text-lg">
+              I build software with purpose, from clinical AI platforms to
+              small-business tools. Based in {profile.location}, and open to
+              remote work.
+            </p>
+          </div>
+
+          <div className="p-4 sm:p-6 md:col-span-5 md:p-8 lg:p-16">
+            <span className="eyebrow block text-muted">Numbers</span>
+            <div className="mt-4 flex flex-col sm:mt-6">
+              {quickStats.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={`py-4 sm:py-5 ${
+                    index > 0 ? "border-t border-line" : ""
+                  }`}
+                >
+                  <span className="font-display text-4xl font-bold tracking-tighter text-paper sm:text-5xl md:text-6xl">
+                    {stat.number}
+                  </span>
+                  <p className="eyebrow mt-1 block text-muted sm:mt-2">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* BOTTOM ROW: SERVICES + STATUS */}
+      <Reveal delay={0.05}>
+        <div className="grid grid-cols-1 border-t border-line md:grid-cols-12">
+          <div className="border-b border-line p-4 sm:p-6 md:col-span-7 md:border-b-0 md:border-r md:p-8 lg:p-16">
+            <span className="eyebrow block text-muted">Services</span>
+            <ul className="mt-4 flex flex-col">
+              {services.map((service) => (
+                <li
+                  key={service.index}
+                  className="flex items-baseline gap-4 border-b border-line py-3 last:border-b-0"
+                >
+                  <span className="font-mono text-[10px] text-muted/60">
+                    {service.index}
+                  </span>
+                  <span className="font-display text-base font-bold text-paper">
+                    {service.title}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col justify-between p-4 sm:p-6 md:col-span-5 md:p-8 lg:p-16">
+            <div>
+              <span className="eyebrow block text-muted">Status</span>
+              <div className="mt-2 flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-scan opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-scan" />
+                </span>
+                <p className="font-display text-base font-bold text-paper sm:text-lg">
+                  {profile.available ? "Available" : "Busy"}
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href="/contact"
+              className="group mt-6 flex items-center justify-between whitespace-nowrap bg-paper px-5 py-3.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet sm:mt-8"
+            >
+              <span className="mr-6">Start a Project</span>
+              <ArrowUpRight />
+            </Link>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}

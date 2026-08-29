@@ -147,18 +147,30 @@ export default function ContactPage() {
         </div>
       </Reveal>
 
-      {/* CREDITS CARD */}
+      {/* CREDITS */}
       <Reveal delay={0.25}>
-        <div className="flex flex-col justify-between gap-2 border-t border-line p-4 sm:flex-row sm:items-center sm:p-6 md:p-8">
-          <span className="eyebrow block text-muted">Credits</span>
-          <div className="text-right">
-            <p className="font-body text-sm text-paper">
-              Designed &amp; Built by {profile.firstName} {profile.lastName}
-            </p>
-            <p className="mt-0.5 font-body text-sm text-muted">
-              Built with Next.js, TypeScript, Tailwind CSS &amp; Framer Motion
+        <div className="grid grid-cols-1 border-t border-line md:grid-cols-12">
+          <div className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8">
+            <span className="eyebrow block text-muted">Credits</span>
+          </div>
+          <div className="flex flex-col justify-center border-b border-line p-4 sm:p-6 md:col-span-8 md:border-b-0 md:border-r md:p-8 lg:p-10">
+            <span className="eyebrow block text-muted">
+              Designed &amp; Built by
+            </span>
+            <p className="mt-1 font-display text-2xl font-bold tracking-tight text-paper sm:text-3xl lg:text-4xl">
+              {profile.firstName}
             </p>
           </div>
+          <div className="flex items-center justify-end p-4 sm:p-6 md:col-span-2 md:p-8">
+            <span className="font-display text-5xl font-bold tracking-tighter text-muted/40 sm:text-6xl md:text-7xl">
+              {new Date().getFullYear()}
+            </span>
+          </div>
+        </div>
+        <div className="border-t border-line p-4 sm:px-6 md:px-8">
+          <p className="font-body text-sm text-muted">
+            Built with Next.js, TypeScript, Tailwind CSS &amp; Framer Motion
+          </p>
         </div>
       </Reveal>
     </main>
