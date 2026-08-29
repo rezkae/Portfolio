@@ -8,7 +8,8 @@ export const profile = {
   available: true,
   remote: "Open to remote work",
   focus: "Full-Stack Development, AI/ML",
-  tagline: "Engineering software with precision and purpose.",
+  tagline:
+    "A developer who builds software with purpose, turning ideas into thoughtful digital experiences.",
   intro:
     "A full-stack developer and AI/ML engineer building clinical software and applied machine learning systems.",
   email: "keazercanlas@gmail.com",
@@ -66,6 +67,7 @@ export const projects: Project[] = [
     year: "2026",
     repo: "https://github.com/rezkae/Melascan",
     images: [
+      { src: "/projects/melascan/Thumbnail.png", alt: "MELAScan project thumbnail" },
       { src: "/projects/melascan/lesion-scan.jpg", alt: "MELAScan lesion scanning screen with an AI bounding box over a detected lesion" },
       { src: "/projects/melascan/dashboard.jpg", alt: "MELAScan dermatologist dashboard with scan totals and risk distribution" },
       { src: "/projects/melascan/lesion-suspicious.jpg", alt: "MELAScan classification report flagging a suspicious lesion with ABCDE criteria" },

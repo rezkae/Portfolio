@@ -58,29 +58,18 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="flex flex-col justify-center border-t border-line p-4 sm:p-6 md:col-span-7 md:border-t-0 md:p-8 lg:p-12">
-            <div className="max-w-2xl space-y-4 font-body text-base leading-relaxed text-muted sm:text-lg">
-              <p>
-                I&apos;m{" "}
-                <span className="font-bold text-paper">
-                  Andreas Keazer Canlas
-                </span>{" "}
-                — a full-stack developer and AI/ML engineer who builds
-                software with a purpose behind it, not just a spec.
-              </p>
-              <p>
-                My flagship project, MELAScan, pairs a YOLOv11 +
-                EfficientNet-B4 ensemble with a full clinic-management
-                platform — from a React frontend to a FastAPI inference
-                server — built to help catch melanoma earlier. It started as
-                my thesis at TSU CCS and grew into a production-shaped
-                system I keep auditing and improving.
-              </p>
-              <p>
-                I&apos;m based in Tarlac, Philippines, and open to remote
-                work. My approach is hands-on: I learn by building, I ship
-                end-to-end, and I&apos;d rather debug a Railway URL mismatch
-                at 2am than leave a feature half-working.
-              </p>
+            <p className="max-w-2xl font-display text-2xl font-bold leading-tight tracking-tight text-muted sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl">
+              A developer who builds software with purpose, turning ideas
+              into thoughtful digital experiences.
+            </p>
+            <div className="mt-4 flex items-center gap-2 sm:mt-6">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-scan opacity-60" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-scan" />
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-scan">
+                Available for work
+              </span>
             </div>
           </div>
         </div>

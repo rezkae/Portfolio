@@ -74,11 +74,26 @@ export default function AboutSummary() {
               text="About"
               className="eyebrow-accent mb-4 block sm:mb-6"
             />
-            <p className="max-w-2xl font-body text-base leading-relaxed text-muted sm:text-lg">
-              I build software with purpose, from clinical AI platforms to
-              small-business tools. Based in {profile.location}, and open to
-              remote work.
-            </p>
+            <div className="max-w-2xl space-y-4 font-body text-base leading-relaxed text-muted sm:text-lg">
+              <p>
+                I&apos;m Andreas Keazer Canlas, a full-stack developer and
+                AI/ML engineer who treats software as a craft, not just a
+                checklist.
+              </p>
+              <p>
+                Based in Tarlac, Philippines, I build systems end to end,
+                from a trained model to the interface a person actually
+                uses. My flagship project, MELAScan, is proof of that: a
+                full clinical platform built around a real detection
+                pipeline, not a demo.
+              </p>
+              <p>
+                My approach is hands-on and detail-driven. I&apos;d rather
+                trace a bug to its root cause than patch around it, and I
+                write code that&apos;s meant to be read again later, by me
+                or by someone else.
+              </p>
+            </div>
           </div>
 
           <div className="p-4 sm:p-6 md:col-span-5 md:p-8 lg:p-16">
