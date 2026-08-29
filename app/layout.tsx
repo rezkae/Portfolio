@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   title: "Andreas Keazer Canlas | Full-Stack Developer & AI/ML Engineer",
   description:
     "Portfolio of Andreas Keazer Canlas, a full-stack developer and AI/ML engineer building clinical software and applied machine learning systems, including MELAScan, an AI-assisted melanoma detection platform.",
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("https://rezkae.vercel.app"),
   openGraph: {
     title: "Andreas Keazer Canlas | Full-Stack Developer & AI/ML Engineer",
     description:
