@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
+import DecodeText from "@/components/DecodeText";
 import { profile, quickStats, services } from "@/lib/data";
 import {
   fadeInUp,
@@ -42,7 +43,7 @@ export default function AboutSummary() {
             className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8"
             variants={fadeInLeft}
           >
-            <span className="eyebrow block text-muted">Section</span>
+            <DecodeText text="Section" className="eyebrow block text-muted" />
             <span className="mt-2 block font-display text-5xl font-bold tracking-tighter text-paper sm:text-6xl md:text-7xl">
               02
             </span>
@@ -53,12 +54,13 @@ export default function AboutSummary() {
             className="flex flex-col justify-center p-4 sm:p-6 md:col-span-10 md:p-8 lg:p-16"
             variants={fadeInUp}
           >
-            <span className="eyebrow-accent mb-2 block sm:mb-4">
-              More Than Just Code
-            </span>
+            <DecodeText
+              text="More Than Just Code"
+              className="eyebrow-accent mb-2 block sm:mb-4"
+            />
             <h2 className="font-display text-3xl font-bold uppercase leading-[0.9] tracking-tighter text-paper sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              Beyond
-              <span className="ml-2 text-muted/40 sm:ml-4">Code</span>
+              <DecodeText text="Beyond" />
+              <DecodeText text="Code" className="ml-2 text-muted/40 sm:ml-4" />
             </h2>
           </motion.div>
         </div>
@@ -68,7 +70,10 @@ export default function AboutSummary() {
       <Reveal>
         <div className="grid grid-cols-1 md:grid-cols-12">
           <div className="border-b border-line p-4 sm:p-6 md:col-span-7 md:border-b-0 md:border-r md:p-8 lg:p-16">
-            <span className="eyebrow-accent mb-4 block sm:mb-6">About</span>
+            <DecodeText
+              text="About"
+              className="eyebrow-accent mb-4 block sm:mb-6"
+            />
             <p className="max-w-2xl font-body text-base leading-relaxed text-muted sm:text-lg">
               I build software with purpose, from clinical AI platforms to
               small-business tools. Based in {profile.location}, and open to
@@ -77,7 +82,7 @@ export default function AboutSummary() {
           </div>
 
           <div className="p-4 sm:p-6 md:col-span-5 md:p-8 lg:p-16">
-            <span className="eyebrow block text-muted">Numbers</span>
+            <DecodeText text="Numbers" className="eyebrow block text-muted" />
             <div className="mt-4 flex flex-col sm:mt-6">
               {quickStats.map((stat, index) => (
                 <div
@@ -103,7 +108,7 @@ export default function AboutSummary() {
       <Reveal delay={0.05}>
         <div className="grid grid-cols-1 border-t border-line md:grid-cols-12">
           <div className="border-b border-line p-4 sm:p-6 md:col-span-7 md:border-b-0 md:border-r md:p-8 lg:p-16">
-            <span className="eyebrow block text-muted">Services</span>
+            <DecodeText text="Services" className="eyebrow block text-muted" />
             <ul className="mt-4 flex flex-col">
               {services.map((service) => (
                 <li
@@ -123,7 +128,7 @@ export default function AboutSummary() {
 
           <div className="flex flex-col justify-between p-4 sm:p-6 md:col-span-5 md:p-8 lg:p-16">
             <div>
-              <span className="eyebrow block text-muted">Status</span>
+              <DecodeText text="Status" className="eyebrow block text-muted" />
               <div className="mt-2 flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-scan opacity-60" />
@@ -137,7 +142,7 @@ export default function AboutSummary() {
 
             <Link
               href="/contact"
-              className="group mt-6 flex items-center justify-between whitespace-nowrap bg-paper px-5 py-3.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet sm:mt-8"
+              className="clickable-ring group mt-6 flex items-center justify-between whitespace-nowrap bg-paper px-5 py-3.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet sm:mt-8"
             >
               <span className="mr-6">Start a Project</span>
               <ArrowUpRight />

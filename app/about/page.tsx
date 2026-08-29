@@ -3,6 +3,7 @@ import FactStrip from "@/components/FactStrip";
 import PortraitSwap from "@/components/PortraitSwap";
 import Reveal from "@/components/Reveal";
 import TechIcon from "@/components/TechIcon";
+import DecodeText from "@/components/DecodeText";
 import {
   certificates,
   currentlyExploring,
@@ -26,18 +27,21 @@ export default function AboutPage() {
       <Reveal>
         <div className="grid grid-cols-1 border-b border-line md:grid-cols-12">
           <div className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8">
-            <span className="eyebrow block text-muted">Section</span>
+            <DecodeText text="Section" className="eyebrow block text-muted" />
             <span className="mt-2 block font-display text-5xl font-bold tracking-tighter text-paper sm:text-6xl md:text-7xl">
               02
             </span>
           </div>
 
           <div className="flex flex-col justify-end p-4 sm:p-6 md:col-span-10 md:p-8 lg:p-16">
-            <span className="eyebrow-accent mb-2 block sm:mb-4">About</span>
+            <DecodeText
+              text="About"
+              className="eyebrow-accent mb-2 block sm:mb-4"
+            />
             <h1 className="font-display text-3xl font-bold uppercase leading-[0.85] tracking-tighter text-paper sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl">
-              {profile.firstName}
+              <DecodeText text={profile.firstName} />
               <br />
-              <span className="text-muted/40">{profile.lastName}</span>
+              <DecodeText text={profile.lastName} className="text-muted/40" />
             </h1>
           </div>
         </div>
@@ -54,8 +58,7 @@ export default function AboutPage() {
           </div>
           <div className="flex flex-col justify-center border-t border-line p-4 sm:p-6 md:col-span-7 md:border-t-0 md:p-8 lg:p-12">
             <p className="max-w-2xl font-body text-2xl leading-relaxed text-muted sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl">
-              A developer who builds software with purpose, turning ideas
-              into thoughtful digital experiences.
+              <DecodeText text="A developer who builds software with purpose, turning ideas into thoughtful digital experiences." />
             </p>
           </div>
         </div>
@@ -77,7 +80,10 @@ export default function AboutPage() {
       <Reveal delay={0.15}>
         <div className="grid grid-cols-1 border-t border-line md:grid-cols-12">
           <div className="p-4 sm:p-6 md:col-span-7 md:border-r md:p-8 lg:p-16">
-            <span className="eyebrow-accent mb-4 block sm:mb-6">Philosophy</span>
+            <DecodeText
+              text="Philosophy"
+              className="eyebrow-accent mb-4 block sm:mb-6"
+            />
             <div className="max-w-2xl space-y-4 font-body text-base leading-relaxed text-muted sm:text-lg">
               <p>
                 Correctness is a habit, not a feature. I trace every number
@@ -90,7 +96,7 @@ export default function AboutPage() {
           </div>
 
           <div className="border-t border-line p-4 sm:p-6 md:col-span-5 md:border-t-0 md:p-8 lg:p-16">
-            <span className="eyebrow-accent">Numbers</span>
+            <DecodeText text="Numbers" className="eyebrow-accent" />
             <div className="mt-4 flex flex-col sm:mt-6">
               {quickStats.map((stat, index) => (
                 <div
@@ -116,7 +122,7 @@ export default function AboutPage() {
       <Reveal delay={0.2}>
         <div className="border-t border-line">
           <div className="flex items-baseline justify-between border-b border-line p-4 sm:p-6 md:p-8">
-            <span className="eyebrow-accent">Experience</span>
+            <DecodeText text="Experience" className="eyebrow-accent" />
             <span className="hidden font-mono text-[10px] text-muted/60 md:block">
               {experience.length} positions
             </span>
@@ -155,21 +161,24 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 border-t border-line md:grid-cols-12">
           {/* LEFT: SECTION MARKER */}
           <div className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8">
-            <span className="eyebrow block text-muted">Section</span>
+            <DecodeText text="Section" className="eyebrow block text-muted" />
             <span className="mt-2 block font-display text-5xl font-bold tracking-tighter text-paper sm:text-6xl md:text-7xl">
               03
             </span>
-            <span className="eyebrow-accent mt-4 block">Expertise</span>
+            <DecodeText
+              text="Expertise"
+              className="eyebrow-accent mt-4 block"
+            />
           </div>
 
           {/* MIDDLE: TECH STACK + CURRENTLY EXPLORING */}
           <div className="border-b border-line p-4 sm:p-6 md:col-span-5 md:border-b-0 md:border-r md:p-8 lg:p-10">
-            <span className="eyebrow block text-muted">Tech Stack</span>
+            <DecodeText text="Tech Stack" className="eyebrow block text-muted" />
             <div className="mt-4 flex flex-wrap gap-2">
               {techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper"
+                  className="clickable-ring flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper"
                 >
                   <TechIcon name={tech} className="h-3.5 w-3.5 text-muted" />
                   {tech}
@@ -177,9 +186,10 @@ export default function AboutPage() {
               ))}
             </div>
 
-            <span className="eyebrow mt-8 block text-muted">
-              Currently Exploring
-            </span>
+            <DecodeText
+              text="Currently Exploring"
+              className="eyebrow mt-8 block text-muted"
+            />
             <div className="mt-4 flex flex-wrap gap-2">
               {currentlyExploring.map((topic) => (
                 <span
@@ -194,7 +204,7 @@ export default function AboutPage() {
 
           {/* RIGHT: SERVICES */}
           <div className="p-4 sm:p-6 md:col-span-5 md:p-8 lg:p-10">
-            <span className="eyebrow block text-muted">Services</span>
+            <DecodeText text="Services" className="eyebrow block text-muted" />
             <ul className="mt-4 flex flex-col">
               {services.map((service) => (
                 <li
@@ -218,7 +228,7 @@ export default function AboutPage() {
       <Reveal delay={0.3}>
         <div className="border-t border-line">
           <div className="flex items-baseline justify-between border-b border-line p-4 sm:p-6 md:p-8">
-            <span className="eyebrow-accent">Journey</span>
+            <DecodeText text="Journey" className="eyebrow-accent" />
             <span className="hidden font-mono text-[10px] text-muted/60 md:block">
               {journey.length} milestones
             </span>
@@ -252,7 +262,7 @@ export default function AboutPage() {
       <Reveal delay={0.35}>
         <div className="grid grid-cols-1 border-t border-line md:grid-cols-2">
           <div className="border-b border-line p-4 sm:p-6 md:border-b-0 md:border-r md:p-8 lg:p-12">
-            <span className="eyebrow-accent">Education</span>
+            <DecodeText text="Education" className="eyebrow-accent" />
             <h3 className="mt-4 font-display text-xl font-bold text-paper">
               {education.degree}
             </h3>
@@ -263,7 +273,7 @@ export default function AboutPage() {
           </div>
 
           <div className="p-4 sm:p-6 md:p-8 lg:p-12">
-            <span className="eyebrow-accent">Certificates</span>
+            <DecodeText text="Certificates" className="eyebrow-accent" />
             <ul className="mt-4 space-y-3">
               {certificates.map((cert) => (
                 <li
@@ -291,7 +301,7 @@ export default function AboutPage() {
               href={profile.resumeHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="reticle mt-6 inline-flex items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+              className="clickable-ring reticle mt-6 inline-flex items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
             >
               Download Resume
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 transition-transform group-hover:translate-y-1">
@@ -307,7 +317,7 @@ export default function AboutPage() {
             </p>
             <Link
               href="/contact"
-              className="reticle mt-6 inline-flex items-center gap-2 bg-paper px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet"
+              className="clickable-ring reticle mt-6 inline-flex items-center gap-2 bg-paper px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-violet"
             >
               Let&apos;s Connect
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1">

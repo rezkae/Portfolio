@@ -98,7 +98,7 @@ export default function Gallery({ images, className = "" }: GalleryProps) {
     >
       <div 
         ref={containerRef}
-        className="relative flex h-full grayscale transition-all duration-500 group-hover:grayscale-0"
+        className="relative flex h-full"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
@@ -116,6 +116,14 @@ export default function Gallery({ images, className = "" }: GalleryProps) {
           </div>
         ))}
       </div>
+
+      {/* Glass hover accent — small corner chip over the photo */}
+      <span className="glass pointer-events-none absolute bottom-4 right-3 z-10 flex translate-y-1 items-center gap-2 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        View Project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3 sm:h-3.5 sm:w-3.5">
+          <path d="M7 17L17 7M7 7h10v10" />
+        </svg>
+      </span>
 
       {/* Navigation indicators */}
       {images.length > 1 && (

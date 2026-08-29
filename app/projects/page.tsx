@@ -1,5 +1,6 @@
 import ProjectList from "@/components/ProjectList";
 import Reveal from "@/components/Reveal";
+import DecodeText from "@/components/DecodeText";
 
 export const metadata = {
   title: "Projects | Andreas Keazer Canlas",
@@ -11,7 +12,7 @@ export default function ProjectsPage() {
       <Reveal>
         <div className="grid grid-cols-1 border-b border-line md:grid-cols-12">
         <div className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8">
-          <span className="eyebrow block text-muted">Section</span>
+          <DecodeText text="Section" className="eyebrow block text-muted" />
           <span className="mt-2 block font-display text-5xl font-bold tracking-tighter text-paper sm:text-6xl md:text-7xl">
             01
           </span>
@@ -19,10 +20,13 @@ export default function ProjectsPage() {
 
         <div className="flex flex-col justify-end gap-6 p-4 sm:p-6 md:col-span-10 md:p-8 lg:p-16">
           <div>
-            <span className="eyebrow-accent mb-2 block sm:mb-4">Projects</span>
+            <DecodeText
+              text="Projects"
+              className="eyebrow-accent mb-2 block sm:mb-4"
+            />
             <h1 className="font-display text-4xl font-bold uppercase leading-[0.9] tracking-tighter text-paper sm:text-5xl md:text-6xl xl:text-7xl">
-              Project
-              <span className="ml-2 text-muted/40 sm:ml-4">Archive</span>
+              <DecodeText text="Project" />
+              <DecodeText text="Archive" className="ml-2 text-muted/40 sm:ml-4" />
             </h1>
           </div>
           <p className="max-w-lg font-body text-sm text-muted sm:text-base">

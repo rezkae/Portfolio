@@ -47,9 +47,11 @@
     background: #7c5cfc;
     color: #0a0b0d;
   }
+  /* Unified focus ring (same violet treatment as .clickable-ring) so every
+     focusable element keeps a visible keyboard indicator. */
   :focus-visible {
-    outline: 2px solid #7c5cfc;
-    outline-offset: 3px;
+    outline: 2px solid rgb(var(--violet) / 0.85);
+    outline-offset: 4px;
   }
 }
 
@@ -135,5 +137,21 @@
       linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
       linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
     background-size: 42px 42px;
+  }
+
+  /* Detached hover/focus ring for clickable elements (violet, outset).
+     Uses outline + offset so it reads as a ring around the element rather
+     than a flush border; matches the global :focus-visible treatment. */
+  .clickable-ring {
+    outline: 2px solid transparent;
+    outline-offset: 4px;
+    transition:
+      outline-color 0.2s ease,
+      outline-offset 0.2s ease;
+  }
+  .clickable-ring:hover,
+  .clickable-ring:focus-visible {
+    outline-color: rgb(var(--violet) / 0.85);
+    outline-offset: 3px;
   }
 }

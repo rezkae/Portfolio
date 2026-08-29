@@ -63,7 +63,7 @@ export default function ProjectList() {
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="flex items-center gap-1.5 border border-line bg-surface px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted"
+                    className="clickable-ring flex items-center gap-1.5 border border-line bg-surface px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted"
                   >
                     <TechIcon name={tech} className="h-3 w-3 text-muted" />
                     {tech}

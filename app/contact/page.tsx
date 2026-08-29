@@ -1,5 +1,6 @@
 import { profile } from "@/lib/data";
 import Reveal from "@/components/Reveal";
+import DecodeText from "@/components/DecodeText";
 
 export const metadata = {
   title: "Contact | Andreas Keazer Canlas",
@@ -45,7 +46,7 @@ export default function ContactPage() {
       <Reveal>
         <div className="grid grid-cols-1 border-b border-line md:grid-cols-12">
           <div className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8">
-            <span className="eyebrow block text-muted">Section</span>
+            <DecodeText text="Section" className="eyebrow block text-muted" />
             <span className="mt-2 block font-display text-5xl font-bold tracking-tighter text-paper sm:text-6xl md:text-7xl">
               03
             </span>
@@ -53,7 +54,10 @@ export default function ContactPage() {
 
           <div className="flex flex-col justify-end p-4 sm:p-6 md:col-span-10 md:p-8 lg:p-16">
             <div>
-              <span className="eyebrow-accent mb-2 block sm:mb-4">Contact</span>
+              <DecodeText
+                text="Contact"
+                className="eyebrow-accent mb-2 block sm:mb-4"
+              />
               <h1 className="font-display text-4xl font-bold uppercase leading-[0.9] tracking-tighter text-paper sm:text-5xl md:text-6xl xl:text-7xl">
                 Let&apos;s Work
                 <span className="ml-2 text-muted/40 sm:ml-4">Together.</span>
@@ -75,15 +79,16 @@ export default function ContactPage() {
               href={channel.href}
               target={channel.external ? "_blank" : undefined}
               rel={channel.external ? "noopener noreferrer" : undefined}
-              className={`group glass flex h-full min-h-40 flex-col justify-between border-line p-4 transition-colors hover:bg-paper hover:text-ink sm:p-6 md:p-8 lg:min-h-56 lg:p-10 ${
+              className={`clickable-ring group glass flex h-full min-h-40 flex-col justify-between border-line p-4 transition-colors hover:bg-paper hover:text-ink sm:p-6 md:p-8 lg:min-h-56 lg:p-10 ${
                 index < channels.length - 1 ? "border-b" : ""
               } ${index % 2 === 0 ? "sm:border-r" : ""} ${
                 index >= 2 ? "sm:border-b-0" : ""
               } lg:border-b-0 ${index < channels.length - 1 ? "lg:border-r" : ""}`}
             >
-              <span className="eyebrow block text-muted group-hover:text-ink/60">
-                {channel.label}
-              </span>
+              <DecodeText
+                text={channel.label}
+                className="eyebrow block text-muted group-hover:text-ink/60"
+              />
               <div className="flex min-w-0 items-end justify-between gap-3">
                 <span className="min-w-0 break-words font-display text-lg font-bold tracking-tight text-paper group-hover:text-ink sm:text-xl lg:text-2xl">
                   {channel.value}
@@ -109,7 +114,10 @@ export default function ContactPage() {
                 index >= 2 ? "sm:border-b-0" : ""
               } lg:border-b-0 ${index < meta.length - 1 ? "lg:border-r" : ""}`}
             >
-              <span className="eyebrow block text-muted">{item.label}</span>
+              <DecodeText
+                text={item.label}
+                className="eyebrow block text-muted"
+              />
               <div className="mt-2 flex items-center gap-2">
                 {item.label === "Status" && (
                   <span className="relative flex h-2 w-2">
@@ -137,7 +145,7 @@ export default function ContactPage() {
             href={profile.resumeHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="reticle inline-flex w-fit shrink-0 items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+            className="clickable-ring reticle inline-flex w-fit shrink-0 items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
           >
             Download Resume
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 transition-transform group-hover:translate-y-1">
@@ -151,12 +159,13 @@ export default function ContactPage() {
       <Reveal delay={0.25}>
         <div className="grid grid-cols-1 border-t border-line md:grid-cols-12">
           <div className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8">
-            <span className="eyebrow block text-muted">Credits</span>
+            <DecodeText text="Credits" className="eyebrow block text-muted" />
           </div>
           <div className="flex flex-col justify-center border-b border-line p-4 sm:p-6 md:col-span-8 md:border-b-0 md:border-r md:p-8 lg:p-10">
-            <span className="eyebrow block text-muted">
-              Designed &amp; Built by
-            </span>
+            <DecodeText
+              text="Designed & Built by"
+              className="eyebrow block text-muted"
+            />
             <p className="mt-1 font-display text-2xl font-bold tracking-tight text-paper sm:text-3xl lg:text-4xl">
               {profile.firstName}
             </p>

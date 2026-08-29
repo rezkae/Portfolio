@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { profile, stats, techStack } from "@/lib/data";
 import TechIcon from "@/components/TechIcon";
+import DecodeText from "@/components/DecodeText";
+import Magnetic from "@/components/Magnetic";
 import {
   fadeInUp,
   fadeInLeft,
@@ -26,7 +28,7 @@ export default function Hero() {
       <div className="grid flex-1 grid-cols-1 lg:grid-cols-12">
         {/* LEFT: SECTION NUMBER */}
         <motion.div
-          className="hidden flex-col justify-between border-r border-line p-6 lg:flex lg:col-span-1"
+          className="glass hidden flex-col justify-between border-r border-line p-6 lg:flex lg:col-span-1"
           variants={fadeInLeft}
         >
           <span className="eyebrow-wide">00</span>
@@ -49,10 +51,10 @@ export default function Hero() {
               variants={staggerContainer}
             >
               <motion.span className="block" variants={fadeInUp}>
-                {profile.firstName}
+                <DecodeText text={profile.firstName} />
               </motion.span>
               <motion.span className="block text-muted/40" variants={fadeInUp}>
-                {profile.lastName}
+                <DecodeText text={profile.lastName} />
               </motion.span>
             </motion.h1>
             <motion.div
@@ -71,7 +73,7 @@ export default function Hero() {
             {/* 3-column strip at every width; fixed short height on phones,
                 square panels from sm up (compact single row, like Drei's). */}
             <div className="grid grid-cols-3">
-              <div className="relative aspect-square h-32 overflow-hidden bg-surface sm:h-auto">
+              <div className="glass relative aspect-square h-32 overflow-hidden sm:h-auto">
                 <Image
                   src="/HomePhoto.png"
                   alt={`Portrait of ${profile.firstName} ${profile.lastName}`}
@@ -84,20 +86,21 @@ export default function Hero() {
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex aspect-square h-32 items-center justify-center bg-paper transition-colors hover:bg-surface sm:h-auto"
+                className="clickable-ring group glass flex aspect-square h-32 items-center justify-center transition-colors hover:bg-surface sm:h-auto"
               >
-                <span className="px-1 text-center font-display text-lg font-bold uppercase tracking-tighter text-ink transition-colors group-hover:text-violet sm:px-2 sm:text-2xl md:text-3xl lg:text-4xl">
+                <span className="px-1 text-center font-display text-lg font-bold uppercase tracking-tighter text-paper transition-colors group-hover:text-violet sm:px-2 sm:text-2xl md:text-3xl lg:text-4xl">
                   {profile.githubHandle}
                 </span>
               </Link>
               {/* OPEN-TO-WORK CALLOUT */}
               <Link
                 href="/contact"
-                className="group glass flex aspect-square h-32 flex-col items-center justify-center gap-1.5 overflow-hidden p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
+                className="clickable-ring group glass flex aspect-square h-32 flex-col items-center justify-center gap-1.5 overflow-hidden p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
               >
-                <span className="eyebrow text-muted transition-colors group-hover:text-ink/70">
-                  Open to Work
-                </span>
+                <DecodeText
+                  text="Open to Work"
+                  className="eyebrow text-muted transition-colors group-hover:text-ink/70"
+                />
                 <span className="font-display text-[11px] font-bold uppercase leading-snug tracking-tight text-paper transition-colors group-hover:text-ink sm:text-xs lg:text-sm">
                   New and creative ideas? Let&apos;s work together.
                 </span>
@@ -112,32 +115,35 @@ export default function Hero() {
         {/* RIGHT: INFO PANEL */}
         <motion.div className="flex flex-col lg:col-span-3" variants={fadeInRight}>
           {/* INTRO */}
-          <div className="flex flex-1 flex-col justify-center border-b border-line p-4 sm:p-6 md:p-8 lg:p-10">
-            <span className="eyebrow-wide mb-2 block text-muted sm:mb-4">
-              Introduction
-            </span>
+          <div className="glass flex flex-1 flex-col justify-center border-b border-line p-4 sm:p-6 md:p-8 lg:p-10">
+            <DecodeText
+              text="Introduction"
+              className="eyebrow-wide mb-2 block text-muted sm:mb-4"
+            />
             <p className="font-body text-sm font-light leading-relaxed text-paper sm:text-base lg:text-lg">
               {profile.intro}
             </p>
           </div>
 
           {/* TECH STACK */}
-          <div className="p-4 sm:p-6 md:p-8 lg:p-10">
-            <span className="eyebrow-wide mb-2 block text-muted sm:mb-4">
-              Tech Stack
-            </span>
+          <div className="glass p-4 sm:p-6 md:p-8 lg:p-10">
+            <DecodeText
+              text="Tech Stack"
+              className="eyebrow-wide mb-2 block text-muted sm:mb-4"
+            />
             <div className="flex flex-wrap gap-2">
               {techStack.slice(0, 8).map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  className="flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 + index * 0.05 }}
-                >
-                  <TechIcon name={tech} className="h-3.5 w-3.5 text-muted" />
-                  {tech}
-                </motion.span>
+                <Magnetic key={tech}>
+                  <motion.span
+                    className="clickable-ring flex items-center gap-1.5 border border-line bg-surface px-2.5 py-1.5 text-xs font-medium text-paper"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 + index * 0.05 }}
+                  >
+                    <TechIcon name={tech} className="h-3.5 w-3.5 text-muted" />
+                    {tech}
+                  </motion.span>
+                </Magnetic>
               ))}
             </div>
           </div>
@@ -150,13 +156,16 @@ export default function Hero() {
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className={`border-line p-3 sm:p-4 md:p-6 ${
+              className={`glass border-line p-3 sm:p-4 md:p-6 ${
                 index % 2 === 0 ? "border-r" : ""
               } ${
                 index < 2 ? "border-b lg:border-b-0" : ""
               } lg:border-r lg:last:border-r-0`}
             >
-              <span className="eyebrow block text-muted">{stat.label}</span>
+              <DecodeText
+                text={stat.label}
+                className="eyebrow block text-muted"
+              />
               <div className="mt-1 flex items-center gap-2">
                 {stat.label === "Status" && (
                   <span className="relative flex h-2 w-2">

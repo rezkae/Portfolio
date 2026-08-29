@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import FactStrip from "@/components/FactStrip";
+import DecodeText from "@/components/DecodeText";
 import { projects } from "@/lib/data";
 import {
   fadeInUp,
@@ -38,7 +39,9 @@ export default function WorkSummary() {
             className="border-b border-line p-4 sm:p-6 md:col-span-2 md:border-b-0 md:border-r md:p-8"
             variants={fadeInLeft}
           >
-            <span className="eyebrow block text-muted">Section</span>
+            <span className="eyebrow block text-muted">
+              <DecodeText text="Section" />
+            </span>
             <span className="mt-2 block font-display text-5xl font-bold tracking-tighter text-paper sm:text-6xl md:text-7xl">
               01
             </span>
@@ -50,17 +53,18 @@ export default function WorkSummary() {
             variants={fadeInUp}
           >
             <div>
-              <span className="eyebrow-accent mb-2 block sm:mb-4">
-                Selected Work
-              </span>
+              <DecodeText
+                text="Selected Work"
+                className="eyebrow-accent mb-2 block sm:mb-4"
+              />
               <h2 className="font-display text-3xl font-bold uppercase leading-[0.9] tracking-tighter text-paper sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                Project
-                <span className="ml-2 text-muted/40 sm:ml-4">Archive</span>
+                <DecodeText text="Project" />
+                <DecodeText text="Archive" className="ml-2 text-muted/40 sm:ml-4" />
               </h2>
             </div>
             <Link
               href="/projects"
-              className="group flex items-center gap-2 whitespace-nowrap border-b border-paper pb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+              className="clickable-ring group flex items-center gap-2 whitespace-nowrap border-b border-paper pb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
             >
               View All
               <ArrowUpRight />
@@ -80,7 +84,7 @@ export default function WorkSummary() {
         >
           <Link
             href={`/projects#${project.id}`}
-            className="group block border-b border-line transition-colors hover:bg-surface/60"
+            className="clickable-ring group block border-b border-line transition-colors hover:bg-surface/60"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12">
               {/* INDEX */}
@@ -94,13 +98,20 @@ export default function WorkSummary() {
               <div className="border-b border-line sm:col-span-1 sm:border-b-0 sm:border-r lg:col-span-4">
                 <div className="relative aspect-video overflow-hidden bg-surface sm:aspect-4/3 lg:aspect-4/3">
                   {project.images[0] ? (
-                    <Image
-                      src={project.images[0].src}
-                      alt={project.images[0].alt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                    />
+                    <>
+                      <Image
+                        src={project.images[0].src}
+                        alt={project.images[0].alt}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover transition-all duration-500 group-hover:scale-105"
+                      />
+                      {/* Glass hover accent — small corner chip, never a full overlay */}
+                      <span className="glass pointer-events-none absolute bottom-3 right-3 flex translate-y-1 items-center gap-2 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                        View Project
+                        <ArrowUpRight />
+                      </span>
+                    </>
                   ) : (
                     <ImagePlaceholder
                       label="Project image"
@@ -127,7 +138,7 @@ export default function WorkSummary() {
 
               {/* YEAR / META */}
               <div className="flex flex-col justify-center p-4 sm:col-span-2 sm:p-6 md:p-8 lg:col-span-2 lg:p-12">
-                <span className="eyebrow block text-muted">Year</span>
+                <DecodeText text="Year" className="eyebrow block text-muted" />
                 <span className="mt-1 font-display text-lg font-bold text-paper md:text-xl">
                   {project.year}
                 </span>
@@ -162,7 +173,7 @@ export default function WorkSummary() {
           </p>
           <Link
             href="/contact"
-            className="group flex items-center justify-between whitespace-nowrap bg-paper px-4 py-3 text-ink transition-colors hover:bg-violet sm:px-6 sm:py-4"
+            className="clickable-ring group flex items-center justify-between whitespace-nowrap bg-paper px-4 py-3 text-ink transition-colors hover:bg-violet sm:px-6 sm:py-4"
           >
             <span className="mr-3 font-mono text-[10px] font-medium uppercase tracking-[0.2em] sm:mr-6">
               Start a Project
