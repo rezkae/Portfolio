@@ -126,4 +126,26 @@
       linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
     background-size: 42px 42px;
   }
+
+  /* Seamless horizontal marquee: the track holds two identical halves,
+     so translating -50% loops without a jump. */
+  .marquee-track {
+    animation: marquee 26s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
 }

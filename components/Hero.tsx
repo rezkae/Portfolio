@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+} from "framer-motion";
 import { profile, stats, quickStats, techStack } from "@/lib/data";
 import TechIcon from "@/components/TechIcon";
 import {
@@ -12,6 +18,50 @@ import {
   scaleIn,
   staggerContainer,
 } from "@/components/motion";
+
+/** Counts from 0 to `target` when scrolled into view, e.g. "2" -> "2+". */
+function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.2 });
+  const count = useMotionValue(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(count, target, {
+      duration: 1.2,
+      ease: "easeOut",
+      onUpdate: (latest) => {
+        if (ref.current) {
+          ref.current.textContent = `${Math.round(latest)}${suffix}`;
+        }
+      },
+    });
+    return () => controls.stop();
+  }, [inView, target, suffix, count]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      0{suffix}
+    </span>
+  );
+}
+
+/** Renders a quick-stat number: count-up for numeric values, pulse for symbols. */
+function StatNumber({ value }: { value: string }) {
+  const match = value.match(/^(\d+)(.*)$/);
+  if (!match) {
+    return (
+      <motion.span
+        className="inline-block"
+        animate={{ scale: [1, 1.12, 1], opacity: [1, 0.55, 1] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {value}
+      </motion.span>
+    );
+  }
+  return <CountUp target={parseInt(match[1], 10)} suffix={match[2]} />;
+}
 
 export default function Hero() {
   return (
@@ -46,11 +96,14 @@ export default function Hero() {
           <div className="flex flex-1 flex-col justify-center p-4 sm:p-6 md:p-8 lg:p-16">
             <motion.h1
               className="font-display text-4xl font-bold uppercase leading-[0.85] tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
-              variants={fadeInUp}
+              variants={staggerContainer}
             >
-              {profile.firstName}
-              <br />
-              <span className="text-muted/40">{profile.lastName}</span>
+              <motion.span className="block" variants={fadeInUp}>
+                {profile.firstName}
+              </motion.span>
+              <motion.span className="block text-muted/40" variants={fadeInUp}>
+                {profile.lastName}
+              </motion.span>
             </motion.h1>
             <motion.div
               className="mt-4 flex items-center gap-3 sm:mt-6 sm:gap-6"
@@ -65,8 +118,10 @@ export default function Hero() {
 
           {/* IMAGE ROW */}
           <motion.div className="border-t border-line" variants={scaleIn}>
-            <div className="grid grid-cols-1 sm:grid-cols-3">
-              <div className="relative aspect-square overflow-hidden bg-surface">
+            {/* 3-column strip at every width; fixed short height on phones,
+                square panels from sm up (compact single row, like Drei's). */}
+            <div className="grid grid-cols-3">
+              <div className="relative aspect-square h-32 overflow-hidden bg-surface sm:h-auto">
                 <Image
                   src="/HomePhoto.png"
                   alt={`Portrait of ${profile.firstName} ${profile.lastName}`}
@@ -75,12 +130,12 @@ export default function Hero() {
                   className="object-cover object-top grayscale transition-all duration-500 hover:grayscale-0"
                 />
               </div>
-              <div className="flex aspect-square items-center justify-center bg-paper">
+              <div className="flex aspect-square h-32 items-center justify-center bg-paper sm:h-auto">
                 <Link
                   href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-2 text-center font-display text-xl font-bold uppercase tracking-tighter text-ink transition-colors hover:text-violet sm:text-2xl md:text-3xl lg:text-4xl"
+                  className="px-1 text-center font-display text-lg font-bold uppercase tracking-tighter text-ink transition-colors hover:text-violet sm:px-2 sm:text-2xl md:text-3xl lg:text-4xl"
                 >
                   {profile.githubHandle}
                 </Link>
@@ -88,15 +143,15 @@ export default function Hero() {
               {/* OPEN-TO-WORK CALLOUT */}
               <Link
                 href="/contact"
-                className="group flex aspect-square flex-col items-center justify-center gap-2 bg-surface p-3 text-center transition-colors hover:bg-violet sm:p-6"
+                className="group flex aspect-square h-32 flex-col items-center justify-center gap-1.5 overflow-hidden bg-surface p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
               >
                 <span className="eyebrow text-muted transition-colors group-hover:text-ink/70">
                   Open to Work
                 </span>
-                <span className="font-display text-xs font-bold uppercase leading-snug tracking-tight text-paper transition-colors group-hover:text-ink sm:text-sm">
+                <span className="font-display text-[11px] font-bold uppercase leading-snug tracking-tight text-paper transition-colors group-hover:text-ink sm:text-xs lg:text-sm">
                   New and creative ideas? Let&apos;s work together.
                 </span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-muted transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-ink">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 text-muted transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-ink sm:h-4 sm:w-4">
                   <path d="M7 17L17 7M7 7h10v10" />
                 </svg>
               </Link>
@@ -197,7 +252,7 @@ export default function Hero() {
               }`}
             >
               <span className="font-display text-4xl font-bold tracking-tighter text-paper sm:text-5xl md:text-6xl">
-                {stat.number}
+                <StatNumber value={stat.number} />
               </span>
               <p className="eyebrow mt-1 block text-muted sm:mt-2">
                 {stat.label}
