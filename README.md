@@ -1,99 +1,129 @@
-# Andreas Keazer Canlas — Portfolio
+<div align="center">
 
-Next.js 14 + TypeScript + Tailwind CSS portfolio, built as four separate
-pages rather than one long scroll.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6d28d9,100:0f172a&height=200&section=header&text=Portfolio&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Andreas%20Keazer%20Canlas%20%E2%80%94%20Full-Stack%20Developer%20%26%20AI%2FML%20Engineer&descAlignY=58&descSize=18" width="100%"/>
+
+[![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-13-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+
+**[Live Site →](https://your-deployment-url.vercel.app)**
+
+</div>
+
+<br/>
+
+## About
+
+This is my personal developer portfolio — a full-bleed, editorial-grid style
+site built to showcase my projects, background, and how to get in touch.
+It's a solo full-stack thesis developer's home on the web: clinical AI
+platforms, small-business tools, and everything in between.
+
+## Features
+
+- 🖥️ **Full-bleed editorial grid layout** — bordered panels that reach the
+  true viewport edge at every screen size, no fixed max-width container
+- 🌗 **Light & dark mode** via `next-themes`, togglable from the nav
+- 🎞️ **Scroll-reveal animation system** built on Framer Motion, with a
+  shared set of stagger/fade variants reused across every section
+- 🖱️ **Swipe-gesture interactions** — project galleries and the About-page
+  portrait respond to an actual swipe motion (mouse or touch), not a
+  click-and-hold drag
+- 📱 **Fully responsive** — from small phones to ultrawide desktop monitors
+- 🗂️ **Content-driven architecture** — all copy, projects, tech stack, and
+  contact info live in a single typed `lib/data.ts`, so pages are just
+  presentation
 
 ## Pages
 
-- `/` — Home. A short intro and a summary of three projects.
-- `/projects` — The full write-up of all three projects.
-- `/about` — Bio, work experience, education, and certificates.
-- `/contact` — Email, phone, GitHub, and LinkedIn.
+| Route | Description |
+|---|---|
+| `/` | Hero, About summary, work highlights, tech stack |
+| `/projects` | Full project archive with image galleries |
+| `/about` | Bio, philosophy, timeline, expertise, certificates |
+| `/contact` | Contact channels, resume, credits |
 
-Nav and footer are shared across all four from `app/layout.tsx`.
+## Tech Stack
 
-## Design direction
+<div align="center">
 
-- **Layout language**: numbered section labels, big display-type headers,
-  a persistent top nav with an "Available" status indicator.
-- **Palette**: near-black base with a violet accent (`#7C5CFC`) and a
-  second "scan" green (`#3DDC97`).
-- **Signature element**: the `.reticle` corner-bracket hover effect (see
-  `app/globals.css`) is a callback to the bounding boxes MELAScan's
-  YOLOv11 model draws around a detected lesion. It shows up on buttons,
-  project cards, and links throughout the site.
-- **Image placeholders**: any spot without a real photo yet uses the
-  `ImagePlaceholder` component (`components/ImagePlaceholder.tsx`), so the
-  layout stays final even before every image exists.
+![Next.js](https://img.shields.io/badge/Next.js_14-black?style=flat-square&logo=next.js)
+![React](https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=flat-square&logo=framer)
 
-## Images
+</div>
 
-Real screenshots are wired in for two of the three projects, pulled from
-your thesis paper and case study PDFs and stored in `public/projects/`:
+## Project Structure
 
-- **MELAScan** (`public/projects/melascan/`): lesion scanning with the AI
-  bounding box, dashboard, a flagged suspicious-lesion report, patient
-  records, and appointment scheduling.
-- **Exercise Lab** (`public/projects/exercise-lab/`): home page hero,
-  exercise demo library, BMI calculator, login screen.
-- **NomVet Clinic** has no screenshots on hand, so it still falls back to
-  `ImagePlaceholder` on both the home summary and `/projects`. Drop real
-  screenshots into a new `public/projects/nomvet-clinic/` folder and add
-  them to that project's `images` array in `lib/data.ts` once you have
-  them.
+```
+├── app/
+│   ├── about/page.tsx        # About page
+│   ├── contact/page.tsx      # Contact page
+│   ├── projects/page.tsx     # Project archive
+│   ├── globals.css           # Design tokens, theme, keyframes
+│   ├── layout.tsx            # Root layout, theme + background
+│   └── page.tsx              # Homepage
+├── components/
+│   ├── Hero.tsx               # Homepage hero
+│   ├── AboutSummary.tsx       # Homepage about/services summary
+│   ├── WorkSummary.tsx        # Homepage project highlights
+│   ├── ProjectList.tsx        # Full project list (with Gallery)
+│   ├── Gallery.tsx            # Swipeable project image gallery
+│   ├── PortraitSwap.tsx       # Swipe-triggered portrait swap
+│   ├── Nav.tsx                # Site navigation + theme toggle
+│   ├── TechStackStrip.tsx     # Tech stack pill row
+│   ├── Services.tsx           # Services list
+│   ├── Reveal.tsx             # Scroll-reveal wrapper
+│   └── motion.tsx             # Shared Framer Motion variants
+├── lib/
+│   ├── data.ts                 # All site content (profile, projects, etc.)
+│   └── useSwipeGesture.ts      # Shared swipe-detection hook
+└── public/
+    └── projects/                # Project screenshots, by project slug
+```
 
-Still using `ImagePlaceholder`:
-
-- The hero portrait on `/` and the portrait on `/about` (no photo of you
-  provided yet).
-
-## Content still to fill in
-
-- `lib/data.ts` → `profile.resumeHref`: currently `"#"`. Point it at a
-  hosted resume PDF once you have one.
-- The two portrait placeholders above, once you have a photo.
-- NomVet Clinic screenshots, as described above.
-- `app/layout.tsx` → `metadataBase`: set to your real domain once you have
-  one.
-
-## Getting started
+## Getting Started
 
 ```bash
+# Clone the repo
+git clone https://github.com/rezkae/Portfolio.git
+cd Portfolio
+
+# Install dependencies
 npm install
+
+# Run the dev server
 npm run dev
 ```
 
-Open http://localhost:3000.
+Open [http://localhost:3000](http://localhost:3000) to view it locally.
 
-> Note: `next/font/google` fetches Inter, Space Grotesk, and JetBrains Mono
-> at build time, so the first `npm run dev` / `npm run build` needs an open
-> network connection. This is normal, not a bug in the code.
+## Editing Content
 
-## Deploying
+Almost everything on the site — profile info, project entries, tech stack,
+services, and contact links — lives in `lib/data.ts`. Update that file
+rather than hunting through individual components.
 
-Push to GitHub and import the repo on Vercel. No configuration needed;
-this is a stock Next.js app.
+## Deployment
 
-## Structure
+This project deploys to [Vercel](https://vercel.com/) out of the box —
+connect the repo and it builds with zero configuration.
 
+```bash
+npm run build
 ```
-app/
-  layout.tsx        Fonts, metadata, shared Nav + Footer
-  page.tsx           Home: Hero + 3-project summary + tech stack
-  globals.css        Design tokens + the .reticle signature element
-  projects/page.tsx  Full project list
-  about/page.tsx     Bio, experience, education, certificates
-  contact/page.tsx   Contact details
-components/
-  Nav.tsx
-  Hero.tsx
-  WorkSummary.tsx    Home page's 3-project summary cards
-  ProjectList.tsx     Full detail cards + image galleries used on /projects
-  ImagePlaceholder.tsx
-  Footer.tsx
-lib/
-  data.ts            All copy, project, and experience content lives here
-public/
-  projects/melascan/       Real MELAScan screenshots
-  projects/exercise-lab/   Real Exercise Lab screenshots
-```
+
+## License
+
+This project's code is available for reference. Please don't copy the
+personal content (name, photos, project write-ups, resume) as your own.
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6d28d9,100:0f172a&height=100&section=footer" width="100%"/>
+
+</div>
