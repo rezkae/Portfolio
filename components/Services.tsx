@@ -13,7 +13,7 @@ export default function Services() {
           {services.map((service) => (
             <div
               key={service.index}
-              className="reticle card-surface rounded-none border-none p-8"
+              className="reticle glass rounded-none border-none p-8"
             >
               <span className="label-tag text-violet-glow">
                 {service.index}

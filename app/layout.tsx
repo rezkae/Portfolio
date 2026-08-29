@@ -46,7 +46,17 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col bg-ink text-paper`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-          <div className="mx-auto flex min-h-screen w-full max-w-[1920px] flex-col md:px-6 lg:px-8">
+          {/* Soft gradient blobs behind the content so glass panels have
+              something to blur. Fixed background decoration only. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+          >
+            <div className="absolute -left-40 -top-40 h-[36rem] w-[36rem] rounded-full bg-violet/20 blur-[120px]" />
+            <div className="absolute -right-40 top-1/3 h-[32rem] w-[32rem] rounded-full bg-scan/15 blur-[120px]" />
+            <div className="absolute -bottom-32 left-1/4 h-[30rem] w-[30rem] rounded-full bg-violet-glow/15 blur-[120px]" />
+          </div>
+          <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1920px] flex-col md:px-6 lg:px-8">
             <Nav />
             <div className="flex-1">{children}</div>
           </div>

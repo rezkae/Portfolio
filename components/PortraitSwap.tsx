@@ -1,15 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useMouseSwipe } from "@/lib/useSwipeGesture";
 
 const IMAGES = ["/1AboutMePortrait.jpg", "/2AboutMePortrait.jpg"];
-const SWIPE_THRESHOLD = 40; // px of horizontal travel to count as a swipe/drag
+const SWIPE_THRESHOLD = 40; // px of horizontal travel to count as a swipe
 
 /**
  * About-page portrait that loops between two photos. The swap only fires on
- * an actual swipe/drag gesture: touch swipe or mouse-drag (never hover,
- * never a plain click).
+ * an actual swipe gesture: touch swipe or mouse motion across the photo
+ * (never hover alone, never a click).
  */
 export default function PortraitSwap({
   alt,
@@ -19,45 +20,28 @@ export default function PortraitSwap({
   sizes?: string;
 }) {
   const [index, setIndex] = useState(0);
-  const dragStartX = useRef<number | null>(null);
-  const dragCurrentX = useRef(0);
+  const touchStartX = useRef<number | null>(null);
+
+  const { onMouseEnter, onMouseMove, onMouseLeave } = useMouseSwipe({
+    threshold: SWIPE_THRESHOLD,
+    onSwipe: () => setIndex((i) => (i + 1) % IMAGES.length),
+  });
 
   const toggle = () => setIndex((i) => (i + 1) % IMAGES.length);
 
-  // Track the drag on window so releasing outside the photo still counts.
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      if (dragStartX.current !== null) dragCurrentX.current = e.clientX;
-    };
-    const handleUp = () => {
-      if (dragStartX.current === null) return;
-      const dx = dragCurrentX.current - dragStartX.current;
-      dragStartX.current = null;
-      if (Math.abs(dx) >= SWIPE_THRESHOLD) toggle();
-    };
-    window.addEventListener("mousemove", handleMove);
-    window.addEventListener("mouseup", handleUp);
-    return () => {
-      window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("mouseup", handleUp);
-    };
-  }, []);
-
   return (
     <div
-      className="group relative aspect-[4/5] w-full cursor-grab select-none overflow-hidden border border-line bg-surface active:cursor-grabbing"
-      onMouseDown={(e) => {
-        dragStartX.current = e.clientX;
-        dragCurrentX.current = e.clientX;
-      }}
+      className="group relative aspect-[4/5] w-full select-none overflow-hidden border border-line bg-surface"
+      onMouseEnter={onMouseEnter}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
       onTouchStart={(e) => {
-        dragStartX.current = e.touches[0].clientX;
-        dragCurrentX.current = e.touches[0].clientX;
+        touchStartX.current = e.touches[0].clientX;
       }}
       onTouchEnd={(e) => {
-        if (dragStartX.current === null) return;
-        const dx = e.changedTouches[0].clientX - dragStartX.current;
-        dragStartX.current = null;
+        if (touchStartX.current === null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX.current;
+        touchStartX.current = null;
         if (Math.abs(dx) >= SWIPE_THRESHOLD) toggle();
       }}
     >

@@ -75,7 +75,7 @@ export default function ContactPage() {
               href={channel.href}
               target={channel.external ? "_blank" : undefined}
               rel={channel.external ? "noopener noreferrer" : undefined}
-              className={`group flex h-full min-h-40 flex-col justify-between border-line p-4 transition-colors hover:bg-paper hover:text-ink sm:p-6 md:p-8 lg:min-h-56 lg:p-10 ${
+              className={`group glass flex h-full min-h-40 flex-col justify-between border-line p-4 transition-colors hover:bg-paper hover:text-ink sm:p-6 md:p-8 lg:min-h-56 lg:p-10 ${
                 index < channels.length - 1 ? "border-b" : ""
               } ${index % 2 === 0 ? "sm:border-r" : ""} ${
                 index >= 2 ? "sm:border-b-0" : ""

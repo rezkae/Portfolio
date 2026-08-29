@@ -53,7 +53,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="flex flex-col justify-center border-t border-line p-4 sm:p-6 md:col-span-7 md:border-t-0 md:p-8 lg:p-12">
-            <p className="max-w-xl font-body text-base leading-relaxed text-muted sm:text-lg">
+            <p className="max-w-2xl font-body text-2xl leading-relaxed text-muted sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl">
               A developer who builds software with purpose, turning ideas
               into thoughtful digital experiences.
             </p>

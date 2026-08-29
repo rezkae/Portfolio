@@ -130,20 +130,20 @@ export default function Hero() {
                   className="object-cover object-top grayscale transition-all duration-500 hover:grayscale-0"
                 />
               </div>
-              <div className="flex aspect-square h-32 items-center justify-center bg-paper sm:h-auto">
-                <Link
-                  href={profile.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-1 text-center font-display text-lg font-bold uppercase tracking-tighter text-ink transition-colors hover:text-violet sm:px-2 sm:text-2xl md:text-3xl lg:text-4xl"
-                >
+              <Link
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex aspect-square h-32 items-center justify-center bg-paper transition-colors hover:bg-surface sm:h-auto"
+              >
+                <span className="px-1 text-center font-display text-lg font-bold uppercase tracking-tighter text-ink transition-colors group-hover:text-violet sm:px-2 sm:text-2xl md:text-3xl lg:text-4xl">
                   {profile.githubHandle}
-                </Link>
-              </div>
+                </span>
+              </Link>
               {/* OPEN-TO-WORK CALLOUT */}
               <Link
                 href="/contact"
-                className="group flex aspect-square h-32 flex-col items-center justify-center gap-1.5 overflow-hidden bg-surface p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
+                className="group glass flex aspect-square h-32 flex-col items-center justify-center gap-1.5 overflow-hidden p-2 text-center transition-colors hover:bg-violet sm:h-auto sm:gap-2 sm:p-6"
               >
                 <span className="eyebrow text-muted transition-colors group-hover:text-ink/70">
                   Open to Work
