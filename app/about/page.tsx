@@ -13,6 +13,7 @@ import {
   journey,
   profile,
   quickStats,
+  resumes,
   services,
   techStack,
 } from "@/lib/data";
@@ -308,7 +309,7 @@ export default function AboutPage() {
               skills.
             </p>
             <a
-              href={profile.resumeHref}
+              href={resumes[0].href}
               target="_blank"
               rel="noopener noreferrer"
               className="reticle mt-6 inline-flex items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"

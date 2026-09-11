@@ -1,4 +1,4 @@
-import { profile } from "@/lib/data";
+import { profile, resumes } from "@/lib/data";
 import Reveal from "@/components/Reveal";
 import DecodeText from "@/components/DecodeText";
 
@@ -141,17 +141,22 @@ export default function ContactPage() {
             Please review my attached resume for a detailed account of my
             professional history, competencies, and key achievements.
           </p>
-          <a
-            href={profile.resumeHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="reticle inline-flex w-fit shrink-0 items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
-          >
-            Download Resume
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 transition-transform group-hover:translate-y-1">
-              <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
-            </svg>
-          </a>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            {resumes.map((resume) => (
+              <a
+                key={resume.id}
+                href={resume.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="reticle inline-flex w-fit shrink-0 items-center gap-2 border border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+              >
+                {resume.label}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
+                  <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
+                </svg>
+              </a>
+            ))}
+          </div>
         </div>
       </Reveal>
 

@@ -17,9 +17,24 @@ export const profile = {
   github: "https://github.com/rezkae",
   githubHandle: "rezkae",
   linkedin: "https://linkedin.com/in/andreas-keazer-canlas-84269b3b9",
-  resumeHref: "/Andreas-Canlas-Full_Stack_Developer-CV.pdf",
-  // Note: Update this to your actual hosted resume PDF link when ready
 };
+
+// Resumes / CVs — both served from /public and linked across the site.
+// Add a new entry here and it appears in the nav dropdown and Contact card.
+export const resumes = [
+  {
+    id: "fullstack",
+    label: "Full-Stack Developer CV",
+    short: "Full-Stack CV",
+    href: "/Andreas-Canlas-Full-Stack-Developer-CV.pdf",
+  },
+  {
+    id: "qa",
+    label: "QA Tester Resume",
+    short: "QA Resume",
+    href: "/Andreas-Canlas-QA-Tester-Resume.pdf",
+  },
+];
 
 export const stats = [
   { label: "Role", value: "Full-Stack Developer, AI/ML" },

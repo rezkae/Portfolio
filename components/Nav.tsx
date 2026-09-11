@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { profile } from "@/lib/data";
+import { profile, resumes } from "@/lib/data";
 import Magnetic from "@/components/Magnetic";
 
 const links = [
@@ -18,6 +18,7 @@ const SCROLL_THRESHOLD = 12;
 export default function Nav() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [resumeOpen, setResumeOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const isDark = (resolvedTheme ?? "dark") === "dark";
@@ -84,16 +85,50 @@ export default function Nav() {
 
           {/* RIGHT SIDE */}
           <div className="flex items-stretch">
-            <Magnetic className="h-14">
-              <a
-                href={profile.resumeHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden h-full items-center border-l border-line px-6 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper lg:flex"
-              >
-                Resume
-              </a>
-            </Magnetic>
+            {/* RESUME DROPDOWN — DESKTOP */}
+            <div
+              className="relative hidden lg:block"
+              onMouseEnter={() => setResumeOpen(true)}
+              onMouseLeave={() => setResumeOpen(false)}
+            >
+              <Magnetic className="h-14">
+                <button
+                  type="button"
+                  onClick={() => setResumeOpen((open) => !open)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") setResumeOpen(false);
+                  }}
+                  aria-expanded={resumeOpen}
+                  aria-haspopup="true"
+                  className="flex h-full items-center gap-2 border-l border-line px-6 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper"
+                >
+                  Resume
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`h-3 w-3 transition-transform ${resumeOpen ? "rotate-180" : ""}`}>
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
+              </Magnetic>
+
+              {resumeOpen && (
+                <div className="absolute right-0 top-full z-50 w-64 border border-line bg-ink">
+                  {resumes.map((resume) => (
+                    <a
+                      key={resume.id}
+                      href={resume.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setResumeOpen(false)}
+                      className="flex items-center justify-between gap-4 border-b border-line px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors last:border-b-0 hover:bg-surface hover:text-paper"
+                    >
+                      {resume.label}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 flex-shrink-0">
+                        <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <div className="hidden h-14 items-center gap-2 border-l border-line px-6 lg:flex">
               <span className="relative flex h-2 w-2">
@@ -167,15 +202,18 @@ export default function Nav() {
                 </Link>
               );
             })}
-            <a
-              href={profile.resumeHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMenuOpen(false)}
-              className="border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper"
-            >
-              Resume
-            </a>
+            {resumes.map((resume) => (
+              <a
+                key={resume.id}
+                href={resume.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper"
+              >
+                {resume.label}
+              </a>
+            ))}
             <button
               onClick={() => setTheme(isDark ? "light" : "dark")}
               className="flex items-center gap-3 border-b border-line px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:bg-surface hover:text-paper"
