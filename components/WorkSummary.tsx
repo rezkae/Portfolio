@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import FactStrip from "@/components/FactStrip";
 import DecodeText from "@/components/DecodeText";
+import StatusBadge from "@/components/StatusBadge";
+import ProgressNote from "@/components/ProgressNote";
 import { projects } from "@/lib/data";
 import {
   fadeInUp,
@@ -23,6 +25,11 @@ function ArrowUpRight() {
 }
 
 export default function WorkSummary() {
+  const shippedCount = projects.filter((p) => p.status !== "in-progress").length;
+  const inProgressTitles = projects
+    .filter((p) => p.status === "in-progress")
+    .map((p) => p.title);
+
   return (
     <section id="work" className="border-t border-line text-paper">
       {/* SECTION HEADER */}
@@ -73,7 +80,7 @@ export default function WorkSummary() {
         </div>
       </motion.div>
 
-      {/* PROJECT ROWS — first 3 pinned projects */}
+      {/* PROJECT ROWS — every project in the archive */}
       {projects.map((project, index) => (
         <motion.div
           key={project.id}
@@ -114,7 +121,7 @@ export default function WorkSummary() {
                     </>
                   ) : (
                     <ImagePlaceholder
-                      label="Project image"
+                      label={`${project.title} · screenshot pending`}
                       ratio="aspect-[4/3]"
                       className="absolute inset-0 border-0"
                     />
@@ -124,7 +131,10 @@ export default function WorkSummary() {
 
               {/* INFO */}
               <div className="flex flex-col justify-center border-b border-line p-4 sm:col-span-1 sm:border-b-0 sm:p-6 md:p-8 lg:col-span-5 lg:border-r lg:p-12">
-                <span className="eyebrow block text-muted">{project.category}</span>
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="eyebrow block text-muted">{project.category}</span>
+                  {project.status && <StatusBadge status={project.status} />}
+                </div>
                 <h3 className="mt-2 flex items-center gap-2 font-display text-xl font-bold tracking-tight text-paper sm:text-2xl md:mt-3 lg:text-4xl">
                   {project.title}
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 -translate-x-2 text-muted/40 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100 sm:h-6 sm:w-6">
@@ -134,6 +144,13 @@ export default function WorkSummary() {
                 <p className="mt-2 max-w-md font-body text-sm leading-relaxed text-muted md:mt-4 md:text-base">
                   {project.summary}
                 </p>
+                {project.progressNote && (
+                  <ProgressNote
+                    note={project.progressNote}
+                    status={project.status}
+                    className="mt-4"
+                  />
+                )}
               </div>
 
               {/* YEAR / META */}
@@ -142,6 +159,20 @@ export default function WorkSummary() {
                 <span className="mt-1 font-display text-lg font-bold text-paper md:text-xl">
                   {project.year}
                 </span>
+                {project.liveUrl && (
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      window.open(project.liveUrl, "_blank", "noopener,noreferrer");
+                    }}
+                    className="mt-3 inline-flex w-fit items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted transition-colors hover:text-scan"
+                  >
+                    Live
+                    <ArrowUpRight />
+                  </button>
+                )}
               </div>
             </div>
           </Link>
@@ -151,7 +182,8 @@ export default function WorkSummary() {
       {/* MOST IMPORTANT INFO STRIP */}
       <FactStrip
         items={[
-          { label: "Projects", value: `${projects.length} shipped end-to-end` },
+          { label: "Shipped", value: `${shippedCount} projects end-to-end` },
+          { label: "In Progress", value: inProgressTitles.join(", ") || "None" },
           { label: "Flagship", value: "MELAScan, from thesis to production" },
           { label: "Approach", value: "Solo developer, model to interface" },
         ]}

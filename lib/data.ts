@@ -54,6 +54,10 @@ export type ProjectImage = {
   alt: string;
 };
 
+// "shipped" means the work is done and live; "in-progress" means it is
+// still being finished, and progressNote explains what remains.
+export type ProjectStatus = "shipped" | "in-progress";
+
 export type Project = {
   id: string;
   index: string;
@@ -64,7 +68,12 @@ export type Project = {
   metrics?: { label: string; value: string }[];
   stack: string[];
   year: string;
+  status?: ProjectStatus;
+  // Short note shown under the project: outstanding work while in progress,
+  // or the outcome once shipped.
+  progressNote?: string;
   repo?: string;
+  liveUrl?: string;
   images: ProjectImage[];
 };
 
@@ -80,6 +89,7 @@ export const projects: Project[] = [
       "MELAScan is a clinic management system that integrates AI-driven melanoma detection with automated appointment scheduling, aimed at improving diagnostic accuracy and streamlining clinical workflows. The AI pipeline runs YOLOv11 for real-time lesion detection alongside a YOLOv11-cls and EfficientNet-B4 ensemble for classifying lesions as benign, melanoma, or suspicious, with disagreement flagging between models to reduce false negatives. On top of that sits a full-stack platform built with React, Express.js, and PostgreSQL: patient and lesion records, an anatomical body map for tracking scan history, risk-based appointment scheduling, and role-based dashboards for dermatologists and receptionists.",
     stack: ["React", "Node.js", "PostgreSQL", "Python", "FastAPI", "YOLOv11", "EfficientNet-B4"],
     year: "2026",
+    status: "shipped",
     repo: "https://github.com/rezkae/Melascan",
     images: [
       { src: "/projects/melascan/Thumbnail.png", alt: "MELAScan project thumbnail" },
@@ -101,6 +111,7 @@ export const projects: Project[] = [
       "Collaborated in a 4-person team to design and build Exercise Lab, a responsive fitness website addressing common barriers like fear of improper form and lack of experience, through accessible instructional content and video demonstrations. Built user authentication and an account dashboard, an interactive BMI calculator with unit toggling between kg/lbs and ft/cm plus a saved BMI history, and a categorized exercise guide spanning six muscle-group and movement categories with video and step-by-step instructions. All 8 core features passed functionality testing, and a 10-respondent user survey rated the tutorials clear and easy to follow.",
     stack: ["HTML", "CSS", "PHP", "MySQL", "Figma"],
     year: "2024",
+    status: "shipped",
     images: [
       { src: "/projects/exercise-lab/hero.jpg", alt: "Exercise Lab home page hero section" },
       { src: "/projects/exercise-lab/exercise-demos.jpg", alt: "Exercise Lab categorized exercise demo library" },
@@ -119,6 +130,7 @@ export const projects: Project[] = [
       "Built a landing page paired with an admin dashboard to handle volunteer submissions for a veterinary clinic program. Implemented access control for admin-only actions and a monitoring view for website analytics, so coordinators could track engagement without digging through raw logs.",
     stack: ["Visual Basic"],
     year: "2024",
+    status: "shipped",
     repo: "https://github.com/Aron-Arboleda/NomVet",
     images: [
       { src: "/projects/nomvet-clinic/HomePage.png", alt: "NomVet Clinic homepage with navigation and call-to-action buttons" },
@@ -130,6 +142,41 @@ export const projects: Project[] = [
       { src: "/projects/nomvet-clinic/ProfilePage.png", alt: "NomVet Clinic user profile page with personal information" },
       { src: "/projects/nomvet-clinic/PricingPage.png", alt: "NomVet Clinic pricing page showing service options" },
     ],
+  },
+  {
+    id: "leadsai",
+    index: "04",
+    title: "LeadsAI",
+    category: "Product · Marketing Site + CRM",
+    summary:
+      "A marketing site with a built-in CRM, wiring a React front end to Supabase auth and n8n lead-intake webhooks.",
+    detail:
+      "LeadsAI pairs a marketing site with a built-in CRM. The front end is React, Vite, TypeScript, Tailwind, and Framer Motion; Supabase handles authentication and the database; and n8n webhooks take in leads from both the contact form and a chat assistant widget. It is deployed on Vercel. The home page has been rebuilt as a premium editorial layout with Fraunces, Inter, and JetBrains Mono type on a near-black background with an amber accent.",
+    stack: ["React", "Vite", "TypeScript", "Tailwind CSS", "Framer Motion", "Supabase", "n8n"],
+    year: "2026",
+    status: "in-progress",
+    progressNote:
+      "Editorial home page redesign is done. Still to finish: verify the contact form and chat widget in the browser, then add the deals table and the activities.deal_id column to the CRM.",
+    liveUrl: "https://leads-ai-dun.vercel.app",
+    images: [],
+  },
+  {
+    id: "tauga-hotel",
+    index: "05",
+    title: "Tauga Hotel AI Chatbot",
+    category: "Entrance Task · Full-Stack + Automation",
+    summary:
+      "A production-ready hotel chatbot with an AI assistant, a fallback contact form, PDF knowledge uploads, and an admin stats dashboard.",
+    detail:
+      "Built as the entrance task for Tauga AI's Full Stack Developer and Automation role: a production-ready chatbot web app for a fictional Cincinnati Hotel. Guests chat with an AI assistant, and when it cannot help they can hand off to a fallback contact form that emails the Tauga team. Admins can upload PDFs to feed the bot's knowledge and review a stats dashboard. The front end is React, the back end is Node.js, and n8n orchestrates the AI and chatbot logic. It was finished ahead of the Sept 5 deadline and led to a CEO interview.",
+    stack: ["React", "Node.js", "n8n", "AI/LLM", "REST API"],
+    year: "2026",
+    status: "shipped",
+    progressNote:
+      "Finished ahead of the Sept 5 deadline. The build led to a CEO interview.",
+    repo: "https://github.com/rezkae/TaugaHotel",
+    liveUrl: "https://frontend-phi-two-93.vercel.app/",
+    images: [],
   },
 ];
 

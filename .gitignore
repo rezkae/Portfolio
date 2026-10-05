@@ -6,6 +6,8 @@ out
 *.tsbuildinfo
 next-env.d.ts
 drei-portfolio
+leadsAI/
+Tauga-hotel/
 node_modules/
 .next/
 drei-portfolio/

@@ -37,6 +37,8 @@
   ],
   "exclude": [
     "node_modules",
-    "drei-portfolio"
+    "drei-portfolio",
+    "leadsAI",
+    "Tauga-hotel"
   ]
 }

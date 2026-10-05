@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import Gallery from "@/components/Gallery";
 import TechIcon from "@/components/TechIcon";
+import StatusBadge from "@/components/StatusBadge";
+import ProgressNote from "@/components/ProgressNote";
 import { projects } from "@/lib/data";
 import { defaultViewport } from "@/components/motion";
 
@@ -30,7 +32,7 @@ export default function ProjectList() {
               ) : (
                 <div className="relative aspect-[4/3] w-full overflow-hidden border border-line bg-surface">
                   <ImagePlaceholder
-                    label="Project image"
+                    label={`${project.title} · screenshot pending`}
                     ratio="aspect-[4/3]"
                     className="absolute inset-0 border-0"
                   />
@@ -40,13 +42,16 @@ export default function ProjectList() {
 
             {/* INFO */}
             <div className="md:col-span-7 md:pl-10 lg:col-span-7 lg:pl-12">
-              <div className="mt-8 flex items-baseline justify-between gap-4 md:mt-0">
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-3 md:mt-0">
                 <span className="eyebrow block text-muted">
                   {project.index} · {project.year}
                 </span>
-                <span className="hidden font-mono text-[10px] text-muted/60 md:block">
-                  {project.category}
-                </span>
+                <div className="flex items-center gap-3">
+                  {project.status && <StatusBadge status={project.status} />}
+                  <span className="hidden font-mono text-[10px] text-muted/60 md:block">
+                    {project.category}
+                  </span>
+                </div>
               </div>
               <h2 className="mt-3 font-display text-2xl font-bold uppercase leading-[0.9] tracking-tighter text-paper sm:text-3xl lg:text-4xl">
                 {project.title}
@@ -87,18 +92,43 @@ export default function ProjectList() {
                 </div>
               )}
 
-              {project.repo && (
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="reticle mt-6 inline-flex items-center gap-2 border border-line px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
-                >
-                  View Source
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 17L17 7M7 7h10v10" />
-                  </svg>
-                </a>
+              {project.progressNote && (
+                <ProgressNote
+                  note={project.progressNote}
+                  status={project.status}
+                  className="mt-6"
+                />
+              )}
+
+              {(project.liveUrl || project.repo) && (
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="reticle inline-flex items-center gap-2 border border-line px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+                    >
+                      View Live
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M7 17L17 7M7 7h10v10" />
+                      </svg>
+                    </a>
+                  )}
+                  {project.repo && (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="reticle inline-flex items-center gap-2 border border-line px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-scan hover:text-scan"
+                    >
+                      View Source
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M7 17L17 7M7 7h10v10" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
               )}
             </div>
           </motion.article>

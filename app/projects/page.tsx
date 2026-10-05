@@ -31,8 +31,9 @@ export default function ProjectsPage() {
           </div>
           <p className="max-w-lg font-body text-sm text-muted sm:text-base">
             Everything I&apos;ve shipped, start to finish: a solo clinical
-            thesis, a team fitness platform, and a small admin system built
-            in Visual Basic.
+            thesis, a team fitness platform, a small Visual Basic admin
+            system, and a live hotel AI chatbot, alongside the LeadsAI site
+            and CRM still in progress.
           </p>
         </div>
         </div>
