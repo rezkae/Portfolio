@@ -165,15 +165,13 @@ export const projects: Project[] = [
     index: "05",
     title: "Tauga Hotel AI Chatbot",
     category: "Entrance Task · Full-Stack + Automation",
-    summary:
-      "A production-ready hotel chatbot with an AI assistant, a fallback contact form, PDF knowledge uploads, and an admin stats dashboard.",
+    summary: "An entrance task project: a hotel chatbot web app with AI assistant, contact form, and admin dashboard.",
     detail:
-      "Built as the entrance task for Tauga AI's Full Stack Developer and Automation role: a production-ready chatbot web app for a fictional Cincinnati Hotel. Guests chat with an AI assistant, and when it cannot help they can hand off to a fallback contact form that emails the Tauga team. Admins can upload PDFs to feed the bot's knowledge and review a stats dashboard. The front end is React, the back end is Node.js, and n8n orchestrates the AI and chatbot logic. It was finished ahead of the Sept 5 deadline and led to a CEO interview.",
+      "Entrance task for Tauga AI's Full Stack Developer and Automation role: a chatbot web app for a fictional Cincinnati Hotel. Guests chat with an AI assistant, with a fallback contact form that emails the team. Admins can upload PDFs for bot knowledge and review a stats dashboard. Front end is React, back end is Node.js, with n8n orchestrating the AI logic.",
     stack: ["React", "Node.js", "n8n", "AI/LLM", "REST API"],
     year: "2026",
     status: "shipped",
-    progressNote:
-      "Finished ahead of the Sept 5 deadline. The build led to a CEO interview.",
+    progressNote: "Completed as an entrance task submission.",
     repo: "https://github.com/rezkae/TaugaHotel",
     liveUrl: "https://frontend-phi-two-93.vercel.app/",
     images: [],
